@@ -1477,7 +1477,7 @@ function renderDashboard() {
       </div>
       <div class="contact-right">
         <div class="stars-sm">${'★'.repeat(c.infl)}${'☆'.repeat(5-c.infl)}</div>
-        ${c.city?`<div class="loc-badge">📍${c.city}</div>`:''}
+        ${c.city?`<div class="loc-badge">${c.city}</div>`:''}
       </div>
     </div>`).join('');
 
@@ -1486,7 +1486,7 @@ function renderDashboard() {
     <div class="act-item"><div class="act-time">${timeAgo(a.time)}</div><div class="act-text">${a.text}</div></div>`).join('')
     : '<div style="color:var(--muted);font-size:.8em;padding:8px 0">Sin actividad reciente</div>';
 
-  renderDashboardBlog();
+  if(typeof renderDashboardBlog==='function') renderDashboardBlog();
 }
 
 /* ── CONTACTS ── */
@@ -1509,12 +1509,12 @@ function renderContacts(){
     return `<div class="contact-item" onclick="openDetail('${c.id}')" style="${overdue?'border-color:rgba(224,92,92,.3)':''}">
       <div class="avatar ${avClass(c.id)}">${initials(c.name)}</div>
       <div class="contact-info">
-        <div class="contact-name">${c.name}${overdue?` <span class="reminder-badge">⏰ ${days}d</span>`:almostDue?` <span class="reminder-badge warn">⚡ pronto</span>`:''}</div>
+        <div class="contact-name">${c.name}${overdue?` <span class="reminder-badge">${days}d</span>`:almostDue?` <span class="reminder-badge warn">pronto</span>`:''}</div>
         <div class="contact-sub">${[c.role,c.company].filter(Boolean).join(' · ')}${c.linkedin?' · LinkedIn':''}</div>
       </div>
       <div class="contact-right">
         <div class="stars-sm">${'★'.repeat(c.infl)}${'☆'.repeat(5-c.infl)}</div>
-        ${c.city?`<div class="loc-badge">📍${c.city}</div>`:''}
+        ${c.city?`<div class="loc-badge">${c.city}</div>`:''}
       </div>
     </div>`;
   }).join(''):'<div class="empty"><div class="empty-icon">👤</div>Sin resultados</div>';
@@ -1660,7 +1660,7 @@ window.openLinkedIn = () => {
 
 window.shareContact = () => {
   const c=contacts.find(x=>x.id===currentContactId); if(!c) return;
-  const text=`Contacto Fixer OS\n👤 ${c.name}\n🏢 ${c.role} — ${c.company}\n📍 ${[c.city,c.country].filter(Boolean).join(', ')||'—'}\n📞 ${c.contact||'—'}\n💼 ${c.linkedin||'—'}\n⭐ Influencia ${c.infl}/5`;
+  const text=`Contacto Fixer OS\n👤 ${c.name}\n🏢 ${c.role} — ${c.company}\n ${[c.city,c.country].filter(Boolean).join(', ')||'—'}\n📞 ${c.contact||'—'}\n💼 ${c.linkedin||'—'}\n⭐ Influencia ${c.infl}/5`;
   if(navigator.share) navigator.share({title:'Contacto: '+c.name,text});
   else navigator.clipboard.writeText(text).then(()=>toast('📋 Copiado'));
 };
@@ -1739,7 +1739,7 @@ function renderMap() {
       iconSize:[36,36], iconAnchor:[18,18]
     });
     const marker = L.marker(coords, {icon}).addTo(mapInstance);
-    marker.bindPopup(`<div style="font-family:sans-serif;min-width:160px"><strong>${c.name}</strong><br><span style="color:#888;font-size:12px">${c.role||''}</span><br><span style="font-size:12px">📍 ${[c.city,c.country].filter(Boolean).join(', ')}</span></div>`);
+    marker.bindPopup(`<div style="font-family:sans-serif;min-width:160px"><strong>${c.name}</strong><br><span style="color:#888;font-size:12px">${c.role||''}</span><br><span style="font-size:12px"> ${[c.city,c.country].filter(Boolean).join(', ')}</span></div>`);
     marker.on('click',()=>openDetail(c.id));
     mapMarkers.push(marker);
   });
@@ -1875,7 +1875,7 @@ function renderRoadmap(){
 function renderModules(){
   const mods=[
     {i:'🧠',t:'Mentalidad Fixer',d:'Principios y causas raíz',p:'Explícame los fundamentos de mentalidad del Fixer: principios, forma de pensar y cómo diferenciar síntomas de causas raíz'},
-    {i:'⚙️',t:'Frameworks operativos',d:'OODA, 5 Whys, WRAP',p:'Dame los frameworks operativos para un Fixer: OODA Loop, 5 Whys, WRAP con ejemplos reales'},
+    {i:'',t:'Frameworks operativos',d:'OODA, 5 Whys, WRAP',p:'Dame los frameworks operativos para un Fixer: OODA Loop, 5 Whys, WRAP con ejemplos reales'},
     {i:'🗣️',t:'Comunicación estratégica',d:'Negociación e influencia',p:'Enséñame comunicación estratégica para Fixers: pedir favores, negociar sin autoridad e influir'},
     {i:'🔗',t:'Networking de alto nivel',d:'Construcción de red estratégica',p:'Tácticas de networking de alto nivel: construir relaciones de valor, mapear actores y activar contactos en crisis'},
     {i:'🚨',t:'Gestión de crisis',d:'Playbook operativo',p:'Playbook completo de gestión de crisis para un Fixer: primeros 30 minutos, checklist y comunicación'},
@@ -1912,7 +1912,7 @@ function renderAll(){
   renderProblems();
   renderKPIs();
   renderRoadmap();
-  renderDashboardTasks();
+  if(typeof renderDashboardTasks==='function') renderDashboardTasks();
 }
 
 /* ════ SETTINGS ════ */
@@ -2064,14 +2064,14 @@ function renderBlog(){
   let list=articles.filter(a=>a.status!=='draft'||a.authorId===currentUser?.uid);
   if(blogFilterCat!=='all')list=list.filter(a=>a.cat===blogFilterCat);
   const el=document.getElementById('blog-grid');if(!el)return;
-  if(!list.length){el.innerHTML='<div class="empty"><div class="empty-icon">📝</div>Sin artículos aún. ¡Sé el primero en publicar!</div>';return;}
+  if(!list.length){el.innerHTML='<div class="empty"><div class="empty-icon"></div>Sin artículos aún. ¡Sé el primero en publicar!</div>';return;}
   el.innerHTML=list.map(a=>{
     const isLocked=a.visibility==='members'&&!currentUser;
     const rt=readTime(a);
     const isDraft=a.status==='draft';
     const catSlug=(a.cat||'análisis').replace(/\s+/g,'-').replace(/[éè]/g,'e').replace(/[óò]/g,'o').replace(/[íì]/g,'i');
     return `<div class="blog-card" onclick="openArticle('${a.id}')">
-      <div class="blog-card-cover">${CAT_ICONS[a.cat]||'📝'}</div>
+      <div class="blog-card-cover">${CAT_ICONS[a.cat]||''}</div>
       <div class="blog-card-body">
         <div class="blog-card-meta">
           <span class="blog-cat cat-${catSlug}">${CAT_ICONS[a.cat]||''} ${a.cat||'—'}</span>
