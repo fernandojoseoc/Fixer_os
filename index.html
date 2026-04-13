@@ -429,6 +429,40 @@ body.dark{--bg:#0f1f3d;--bg2:#1a2d4a;--bg3:#243656;--bg4:#2d4268;--border:rgba(1
 .keyword-tag{display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:99px;background:var(--bg3);border:1px solid var(--border2);font-size:11px;color:var(--navy);}
 .keyword-tag button{background:none;border:none;cursor:pointer;color:var(--muted);font-size:14px;line-height:1;padding:0;}
 
+/* TASKS */
+.task-list{display:flex;flex-direction:column;gap:8px;}
+.task-item{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);transition:all .15s;}
+.task-item.done{opacity:.55;}
+.task-item.done .task-title{text-decoration:line-through;color:var(--muted);}
+.task-check{width:20px;height:20px;border-radius:6px;border:2px solid var(--border2);flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;margin-top:1px;}
+.task-check.checked{background:var(--blue);border-color:var(--blue);}
+.task-check.checked::after{content:'✓';color:#fff;font-size:11px;font-weight:700;}
+.task-body{flex:1;min-width:0;}
+.task-title{font-size:.93em;font-weight:500;color:var(--navy);margin-bottom:4px;line-height:1.3;}
+.task-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.task-priority{display:inline-flex;padding:1px 8px;border-radius:99px;font-size:10px;font-family:var(--mono);font-weight:600;}
+.tp-high{background:#fef2f2;color:#dc2626;border:1px solid #fecaca;}
+.tp-med{background:#fffbeb;color:#d97706;border:1px solid #fde68a;}
+.tp-low{background:#f0fdf4;color:#16a34a;border:1px solid #bbf7d0;}
+.task-due{font-size:10px;font-family:var(--mono);color:var(--muted2);}
+.task-due.overdue{color:var(--red);font-weight:600;}
+.task-contact{font-size:10px;color:var(--blue);font-family:var(--mono);}
+.task-actions{display:flex;gap:4px;flex-shrink:0;}
+.task-btn{width:28px;height:28px;border-radius:6px;border:none;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--muted);transition:background .15s;}
+.task-btn:hover{background:var(--bg3);}
+.task-filters{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;}
+.task-section-header{display:flex;align-items:center;justify-content:space-between;margin:16px 0 8px;}
+.task-section-title{font-size:.72em;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-family:var(--mono);}
+.task-count-badge{background:var(--bg3);border:1px solid var(--border2);border-radius:99px;padding:1px 8px;font-size:10px;font-family:var(--mono);color:var(--muted);}
+.dash-tasks-preview{display:flex;flex-direction:column;gap:6px;}
+.dash-task-item{display:flex;align-items:center;gap:10px;padding:8px 10px;background:var(--bg3);border-radius:var(--r);cursor:pointer;}
+.dash-task-check{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--border2);flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.dash-task-check.checked{background:var(--blue);border-color:var(--blue);}
+.dash-task-check.checked::after{content:'✓';color:#fff;font-size:9px;font-weight:700;}
+.dash-task-title{font-size:.8em;color:var(--navy);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.dash-task-due{font-size:10px;font-family:var(--mono);color:var(--muted2);flex-shrink:0;}
+.dash-task-due.overdue{color:var(--red);}
+
 /* EMPTY */
 .empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;}
 .empty-icon{font-size:36px;margin-bottom:10px;}
@@ -449,10 +483,21 @@ body.dark{--bg:#0f1f3d;--bg2:#1a2d4a;--bg3:#243656;--bg4:#2d4268;--border:rgba(1
   .stat-grid{grid-template-columns:repeat(4,1fr);}
   .module-grid{grid-template-columns:repeat(3,1fr);}
   #map-container{height:500px;}
+  .article-backdrop{border-radius:0;}
 }
 @media(max-width:768px){
+  .topbar{padding-top:calc(var(--safe-t) + 8px);height:calc(var(--nav-h) + var(--safe-t));}
   .content{padding:12px 12px calc(12px + var(--bnav-h) + var(--safe-b));}
   .field-row{grid-template-columns:1fr;}
+  .stat-grid{grid-template-columns:repeat(2,1fr);}
+  .two-col{grid-template-columns:1fr;}
+  .module-grid{grid-template-columns:1fr 1fr;}
+  .blog-card-cover{height:100px;}
+  .article-body{padding:16px 14px 80px;}
+  .article-title{font-size:1.3em;}
+  .drawer-actions{gap:6px;}
+  .drawer-actions .btn{font-size:.75em;padding:.5rem .5rem;}
+  .desktop-nav{display:none;}
 }
 
 </style>
@@ -532,6 +577,7 @@ body.dark{--bg:#0f1f3d;--bg2:#1a2d4a;--bg3:#243656;--bg4:#2d4268;--border:rgba(1
     <button class="dnav-tab" onclick="showTab('kpis')" data-tab="kpis">KPIs</button>
     <button class="dnav-tab" onclick="showTab('roadmap')" data-tab="roadmap">Roadmap</button>
     <button class="dnav-tab" onclick="showTab('modulos')" data-tab="modulos">Módulos</button>
+    <button class="dnav-tab" onclick="showTab('tareas')" data-tab="tareas">Tareas</button>
     <button class="dnav-tab" onclick="showTab('blog')" data-tab="blog">Blog</button>
     <button class="dnav-tab" onclick="showTab('ajustes')" data-tab="ajustes">Ajustes</button>
   </div>
@@ -543,6 +589,13 @@ body.dark{--bg:#0f1f3d;--bg2:#1a2d4a;--bg3:#243656;--bg4:#2d4268;--border:rgba(1
       <div id="dash-alerts"></div>
       <div class="card"><div class="card-title">Problemas activos</div><div class="prob-list" id="dash-probs"></div></div>
       <div class="card"><div class="card-title">Top contactos</div><div class="contact-list" id="dash-contacts"></div></div>
+      <div class="card" id="dash-tasks-card" style="display:none">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <div class="card-title" style="margin-bottom:0">Tareas pendientes</div>
+          <button class="btn btn-sm" onclick="showTab('tareas')" style="font-size:.72em;min-height:28px;padding:4px 10px">Ver todas →</button>
+        </div>
+        <div class="dash-tasks-preview" id="dash-tasks-preview"></div>
+      </div>
       <div class="card"><div class="card-title">Actividad reciente</div><div id="dash-activity"></div></div>
     </div>
     <!-- CONTACTOS -->
@@ -584,6 +637,16 @@ body.dark{--bg:#0f1f3d;--bg2:#1a2d4a;--bg3:#243656;--bg4:#2d4268;--border:rgba(1
     <div id="tab-modulos" class="tab">
       <p style="font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.5">Toca un módulo para abrir una sesión de entrenamiento.</p>
       <div class="module-grid" id="module-grid"></div>
+    </div>
+
+    <!-- TAREAS -->
+    <div id="tab-tareas" class="tab">
+      <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center">
+        <button class="btn btn-primary btn-sm" onclick="openTaskModal()">+ Nueva tarea</button>
+        <div class="task-filters" id="task-filters" style="margin-bottom:0"></div>
+      </div>
+      <div id="task-list-pending"></div>
+      <div id="task-list-done"></div>
     </div>
 
     <!-- BLOG -->
@@ -745,6 +808,10 @@ body.dark{--bg:#0f1f3d;--bg2:#1a2d4a;--bg3:#243656;--bg4:#2d4268;--border:rgba(1
         <svg viewBox="0 0 24 24"><polyline points="3 17 8 12 13 15 21 7"/><polyline points="17 7 21 7 21 11"/></svg>
         <span>KPIs</span>
       </button>
+      <button class="bnav-tab" onclick="showTab('tareas')" data-btab="tareas">
+        <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <span>Tareas</span>
+      </button>
       <button class="bnav-tab" onclick="showTab('ajustes')" data-btab="ajustes">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
         <span>Ajustes</span>
@@ -879,6 +946,38 @@ body.dark{--bg:#0f1f3d;--bg2:#1a2d4a;--bg3:#243656;--bg4:#2d4268;--border:rgba(1
     <div style="margin-left:auto;display:flex;gap:8px" id="article-actions"></div>
   </div>
   <div class="article-body" id="article-body"></div>
+</div>
+
+<!-- TASK MODAL -->
+<div class="modal-backdrop" id="task-modal" onclick="closeModal('task-modal')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="task-modal-title">Nueva tarea</div>
+    <input type="hidden" id="t-id">
+    <div class="field"><label>Tarea *</label><input id="t-title" placeholder="Ej: Llamar a Juan para cotización de transporte"></div>
+    <div class="field-row">
+      <div class="field"><label>Prioridad</label>
+        <select id="t-priority">
+          <option value="high">🔴 Alta</option>
+          <option value="med" selected>🟡 Media</option>
+          <option value="low">🟢 Baja</option>
+        </select>
+      </div>
+      <div class="field"><label>Fecha límite</label><input id="t-due" type="date"></div>
+    </div>
+    <div class="field"><label>Vincular a contacto (opcional)</label>
+      <select id="t-contact">
+        <option value="">— Sin contacto —</option>
+      </select>
+    </div>
+    <div class="field"><label>Vincular a problema (opcional)</label>
+      <select id="t-problem">
+        <option value="">— Sin problema —</option>
+      </select>
+    </div>
+    <div class="field"><label>Notas</label><textarea id="t-notes" placeholder="Detalles adicionales..." style="min-height:60px"></textarea></div>
+    <button class="btn btn-primary" style="width:100%;margin-top:4px" id="task-save-btn" onclick="saveTask()">Guardar tarea</button>
+  </div>
 </div>
 
 <!-- WRITE ARTICLE MODAL -->
@@ -1062,6 +1161,7 @@ window.doLogout = async () => {
   if(unsubProblems) unsubProblems();
   if(unsubActivity) unsubActivity();
   if(unsubArticles) unsubArticles();
+  if(unsubTasks) unsubTasks();
   await signOut(auth);
 };
 
@@ -1114,6 +1214,7 @@ function subscribeToData() {
     }
   );
 
+  subscribeToTasks();
   subscribeToBlog();
   unsubActivity = onSnapshot(
     query(collection(db,'users',uid,'activity'), orderBy('time','desc')),
@@ -1630,6 +1731,7 @@ function renderAll(){
   renderProblems();
   renderKPIs();
   renderRoadmap();
+  renderDashboardTasks();
 }
 
 /* ════ SETTINGS ════ */
@@ -1752,7 +1854,7 @@ function applyFontSize(size,updateUI=true){
 }
 
 const _origShowTab=window.showTab;
-window.showTab=id=>{_origShowTab(id);if(id==='ajustes')renderFontOptions();if(id==='blog')renderBlog();};
+window.showTab=id=>{_origShowTab(id);if(id==='ajustes')renderFontOptions();if(id==='blog')renderBlog();if(id==='tareas'){renderTasks();renderTaskFilters();}};
 
 /* ════ BLOG ════ */
 let articles=[];let currentArticleId=null;let writeKeywords=[];let blogFilterCat='all';let unsubArticles=null;
@@ -1918,6 +2020,214 @@ window.updateCharCount=(inputId,countId,max)=>{
   const words=el.value.trim().split(/\s+/).filter(Boolean).length;
   count.textContent=words+' / '+max+' palabras';
   count.style.color=words>max?'var(--red)':'var(--muted2)';
+};
+
+
+/* ════ TASKS ════ */
+let tasks = [];
+let taskFilter = 'all';
+let unsubTasks = null;
+
+const TASK_PRIORITIES = {high:'Alta', med:'Media', low:'Baja'};
+
+function subscribeToTasks() {
+  if(unsubTasks) unsubTasks();
+  const uid = currentUser.uid;
+  unsubTasks = onSnapshot(
+    query(collection(db,'users',uid,'tasks'), orderBy('createdAt','desc')),
+    snap => { tasks = snap.docs.map(d=>({id:d.id,...d.data()})); renderTasks(); renderDashboardTasks(); },
+    err => console.error(err)
+  );
+}
+
+function taskDueDateClass(due) {
+  if(!due) return '';
+  const today = new Date(); today.setHours(0,0,0,0);
+  const dueDate = new Date(due);
+  return dueDate < today ? 'overdue' : '';
+}
+
+function formatDue(due) {
+  if(!due) return '';
+  const today = new Date(); today.setHours(0,0,0,0);
+  const d = new Date(due);
+  const diff = Math.round((d-today)/864e5);
+  if(diff < 0) return `Vencida hace ${Math.abs(diff)}d`;
+  if(diff === 0) return 'Hoy';
+  if(diff === 1) return 'Mañana';
+  return d.toLocaleDateString('es',{day:'2-digit',month:'short'});
+}
+
+function renderTaskFilters() {
+  const el = document.getElementById('task-filters'); if(!el) return;
+  const filters = [
+    {id:'all', label:'Todas'},
+    {id:'high', label:'🔴 Alta'},
+    {id:'med', label:'🟡 Media'},
+    {id:'low', label:'🟢 Baja'},
+    {id:'overdue', label:'⚠️ Vencidas'},
+  ];
+  el.innerHTML = filters.map(f => `<span class="tag ${taskFilter===f.id?'active':''}" onclick="setTaskFilter('${f.id}')">${f.label}</span>`).join('');
+}
+
+window.setTaskFilter = f => { taskFilter=f; renderTaskFilters(); renderTasks(); };
+
+function renderTasks() {
+  renderTaskFilters();
+  const today = new Date(); today.setHours(0,0,0,0);
+
+  let pending = tasks.filter(t => !t.done);
+  let done = tasks.filter(t => t.done);
+
+  if(taskFilter === 'high') pending = pending.filter(t=>t.priority==='high');
+  else if(taskFilter === 'med') pending = pending.filter(t=>t.priority==='med');
+  else if(taskFilter === 'low') pending = pending.filter(t=>t.priority==='low');
+  else if(taskFilter === 'overdue') pending = pending.filter(t=>t.due && new Date(t.due)<today);
+
+  // Sort: overdue first, then by due date, then by priority
+  pending.sort((a,b) => {
+    const pa = a.due?new Date(a.due):new Date('2099-01-01');
+    const pb = b.due?new Date(b.due):new Date('2099-01-01');
+    return pa-pb;
+  });
+
+  const pendingEl = document.getElementById('task-list-pending');
+  const doneEl = document.getElementById('task-list-done');
+  if(!pendingEl||!doneEl) return;
+
+  if(!pending.length && !done.length) {
+    pendingEl.innerHTML = '<div class="empty"><div class="empty-icon">✅</div>Sin tareas. ¡Crea tu primera tarea!</div>';
+    doneEl.innerHTML = '';
+    return;
+  }
+
+  pendingEl.innerHTML = `
+    <div class="task-section-header">
+      <div class="task-section-title">Pendientes</div>
+      <span class="task-count-badge">${pending.length}</span>
+    </div>
+    <div class="task-list">${pending.length ? pending.map(t => taskItemHTML(t)).join('') : '<div style="color:var(--muted);font-size:13px;padding:8px 0">Sin tareas pendientes ✓</div>'}</div>`;
+
+  doneEl.innerHTML = done.length ? `
+    <div class="task-section-header" style="margin-top:16px">
+      <div class="task-section-title">Completadas</div>
+      <span class="task-count-badge">${done.length}</span>
+    </div>
+    <div class="task-list">${done.slice(0,10).map(t => taskItemHTML(t)).join('')}</div>` : '';
+}
+
+function taskItemHTML(t) {
+  const c = contacts.find(x=>x.id===t.contactId);
+  const p = problems.find(x=>x.id===t.problemId);
+  const dueClass = taskDueDateClass(t.due);
+  const prioClass = `tp-${t.priority||'med'}`;
+  return `<div class="task-item ${t.done?'done':''}">
+    <div class="task-check ${t.done?'checked':''}" onclick="toggleTask('${t.id}')"></div>
+    <div class="task-body">
+      <div class="task-title">${t.title}</div>
+      <div class="task-meta">
+        <span class="task-priority ${prioClass}">${TASK_PRIORITIES[t.priority||'med']}</span>
+        ${t.due?`<span class="task-due ${dueClass}">📅 ${formatDue(t.due)}</span>`:''}
+        ${c?`<span class="task-contact" onclick="event.stopPropagation();openDetail('${c.id}')">👤 ${c.name.split(' ')[0]}</span>`:''}
+        ${p?`<span class="task-contact" style="color:var(--amber)">⚠️ ${p.desc.slice(0,30)}...</span>`:''}
+      </div>
+      ${t.notes?`<div style="font-size:.78em;color:var(--muted);margin-top:4px;line-height:1.4">${t.notes}</div>`:''}
+    </div>
+    <div class="task-actions">
+      <button class="task-btn" onclick="editTask('${t.id}')" title="Editar">✏️</button>
+      <button class="task-btn" onclick="deleteTask('${t.id}')" title="Eliminar">🗑</button>
+    </div>
+  </div>`;
+}
+
+function renderDashboardTasks() {
+  const pending = tasks.filter(t=>!t.done).slice(0,4);
+  const card = document.getElementById('dash-tasks-card');
+  const preview = document.getElementById('dash-tasks-preview');
+  if(!card||!preview) return;
+  if(!pending.length) { card.style.display='none'; return; }
+  card.style.display='block';
+  const today = new Date(); today.setHours(0,0,0,0);
+  preview.innerHTML = pending.map(t => {
+    const dueClass = taskDueDateClass(t.due);
+    return `<div class="dash-task-item" onclick="showTab('tareas')">
+      <div class="dash-task-check ${t.done?'checked':''}" onclick="event.stopPropagation();toggleTask('${t.id}')"></div>
+      <div class="dash-task-title">${t.title}</div>
+      ${t.due?`<span class="dash-task-due ${dueClass}">${formatDue(t.due)}</span>`:''}
+    </div>`;
+  }).join('');
+}
+
+/* OPEN/EDIT/SAVE TASK */
+window.openTaskModal = () => {
+  document.getElementById('task-modal-title').textContent = 'Nueva tarea';
+  document.getElementById('task-save-btn').textContent = 'Guardar tarea';
+  document.getElementById('t-id').value = '';
+  ['t-title','t-notes'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('t-priority').value = 'med';
+  document.getElementById('t-due').value = '';
+  // Populate contact select
+  const cs = document.getElementById('t-contact');
+  cs.innerHTML = '<option value="">— Sin contacto —</option>' + contacts.map(c=>`<option value="${c.id}">${c.name}</option>`).join('');
+  // Populate problem select
+  const ps = document.getElementById('t-problem');
+  ps.innerHTML = '<option value="">— Sin problema —</option>' + problems.filter(p=>p.status==='active').map(p=>`<option value="${p.id}">${p.desc.slice(0,50)}</option>`).join('');
+  openModal('task-modal');
+};
+
+window.editTask = (id) => {
+  const t = tasks.find(x=>x.id===id); if(!t) return;
+  document.getElementById('task-modal-title').textContent = 'Editar tarea';
+  document.getElementById('task-save-btn').textContent = 'Guardar cambios';
+  document.getElementById('t-id').value = id;
+  document.getElementById('t-title').value = t.title||'';
+  document.getElementById('t-priority').value = t.priority||'med';
+  document.getElementById('t-due').value = t.due||'';
+  document.getElementById('t-notes').value = t.notes||'';
+  const cs = document.getElementById('t-contact');
+  cs.innerHTML = '<option value="">— Sin contacto —</option>' + contacts.map(c=>`<option value="${c.id}" ${c.id===t.contactId?'selected':''}>${c.name}</option>`).join('');
+  const ps = document.getElementById('t-problem');
+  ps.innerHTML = '<option value="">— Sin problema —</option>' + problems.map(p=>`<option value="${p.id}" ${p.id===t.problemId?'selected':''}>${p.desc.slice(0,50)}</option>`).join('');
+  openModal('task-modal');
+};
+
+window.saveTask = async () => {
+  const title = document.getElementById('t-title').value.trim();
+  if(!title) { toast('⚠️ El título es obligatorio'); return; }
+  const data = {
+    title,
+    priority: document.getElementById('t-priority').value,
+    due: document.getElementById('t-due').value||null,
+    contactId: document.getElementById('t-contact').value||null,
+    problemId: document.getElementById('t-problem').value||null,
+    notes: document.getElementById('t-notes').value.trim(),
+    done: false,
+    updatedAt: serverTimestamp(),
+  };
+  const editId = document.getElementById('t-id').value;
+  try {
+    if(editId) {
+      await updateDoc(doc(db,'users',currentUser.uid,'tasks',editId), data);
+      toast('✅ Tarea actualizada');
+    } else {
+      data.createdAt = serverTimestamp();
+      await addDoc(collection(db,'users',currentUser.uid,'tasks'), data);
+      toast('✅ Tarea creada');
+      addActivity(`<strong>Nueva tarea</strong> — "${title}"`);
+    }
+    closeModal('task-modal');
+  } catch(e) { toast('❌ Error: '+e.message); }
+};
+
+window.toggleTask = async (id) => {
+  const t = tasks.find(x=>x.id===id); if(!t) return;
+  await updateDoc(doc(db,'users',currentUser.uid,'tasks',id), {done:!t.done, updatedAt:serverTimestamp()});
+  if(!t.done) toast('✅ Tarea completada');
+};
+
+window.deleteTask = async (id) => {
+  await deleteDoc(doc(db,'users',currentUser.uid,'tasks',id));
+  toast('🗑 Tarea eliminada');
 };
 
 
