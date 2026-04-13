@@ -104,7 +104,21 @@
 .tab{display:none;}.tab.active{display:block;}
 
 /* STATS */
-.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem;margin-bottom:.9rem;}
+.dash-welcome{background:var(--navy);border-radius:var(--r2);padding:16px 20px;margin-bottom:.9rem;display:flex;align-items:center;justify-content:space-between;}
+.dash-welcome-left{}
+.dash-welcome-greeting{font-size:1.1em;font-weight:700;color:#ffffff;margin-bottom:2px;}
+.dash-welcome-sub{font-size:.78em;color:rgba(255,255,255,.5);font-family:var(--mono);}
+.dash-welcome-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;}
+.dash-welcome-stat{font-size:.72em;color:rgba(255,255,255,.6);font-family:var(--mono);}
+.dash-welcome-stat strong{color:var(--cyan);}
+.dash-cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.dash-col-left{display:flex;flex-direction:column;gap:12px;}
+.dash-col-right{display:flex;flex-direction:column;gap:12px;}
+.dash-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.dash-link-btn{background:none;border:none;font-size:.73em;color:var(--blue);cursor:pointer;font-family:var(--mono);padding:0;font-weight:500;}
+.dash-link-btn:hover{color:var(--navy);}
+.dash-activity-card{}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-bottom:.9rem;}
 .stat{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:.9rem 1rem;border-top:3px solid var(--cyan);}
 .stat-label{font-size:.65em;color:var(--muted2);margin-bottom:.3rem;font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase;}
 .stat-val{font-family:var(--display);font-size:1.8em;font-weight:700;color:var(--navy);line-height:1.1;}
@@ -492,6 +506,9 @@ body.dark{--bg:#0f1f3d;--bg2:#1a2d4a;--bg3:#243656;--bg4:#2d4268;--border:rgba(1
   .stat-grid{grid-template-columns:repeat(2,1fr);}
   .two-col{grid-template-columns:1fr;}
   .module-grid{grid-template-columns:1fr 1fr;}
+  .dash-cols{grid-template-columns:1fr;}
+  .dash-welcome{flex-direction:column;align-items:flex-start;gap:10px;}
+  .dash-welcome-right{align-items:flex-start;flex-direction:row;gap:16px;}
   .blog-card-cover{height:100px;}
   .article-body{padding:16px 14px 80px;}
   .article-title{font-size:1.3em;}
@@ -585,18 +602,46 @@ body.dark{--bg:#0f1f3d;--bg2:#1a2d4a;--bg3:#243656;--bg4:#2d4268;--border:rgba(1
   <div class="content">
     <!-- DASHBOARD -->
     <div id="tab-dashboard" class="tab active">
+      <!-- WELCOME BANNER -->
+      <div id="dash-welcome" class="dash-welcome"></div>
+      <!-- STAT GRID -->
       <div class="stat-grid" id="dash-stats"></div>
+      <!-- ALERTS -->
       <div id="dash-alerts"></div>
-      <div class="card"><div class="card-title">Problemas activos</div><div class="prob-list" id="dash-probs"></div></div>
-      <div class="card"><div class="card-title">Top contactos</div><div class="contact-list" id="dash-contacts"></div></div>
-      <div class="card" id="dash-tasks-card" style="display:none">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-          <div class="card-title" style="margin-bottom:0">Tareas pendientes</div>
-          <button class="btn btn-sm" onclick="showTab('tareas')" style="font-size:.72em;min-height:28px;padding:4px 10px">Ver todas →</button>
+      <!-- TWO COLUMN LAYOUT -->
+      <div class="dash-cols">
+        <!-- LEFT -->
+        <div class="dash-col-left">
+          <div class="card">
+            <div class="dash-card-header">
+              <div class="card-title" style="margin-bottom:0">Problemas activos</div>
+              <button class="dash-link-btn" onclick="showTab('problemas')">Ver todos →</button>
+            </div>
+            <div class="prob-list" id="dash-probs"></div>
+          </div>
+          <div class="card" id="dash-tasks-card" style="display:none">
+            <div class="dash-card-header">
+              <div class="card-title" style="margin-bottom:0">Tareas pendientes</div>
+              <button class="dash-link-btn" onclick="showTab('tareas')">Ver todas →</button>
+            </div>
+            <div class="dash-tasks-preview" id="dash-tasks-preview"></div>
+          </div>
         </div>
-        <div class="dash-tasks-preview" id="dash-tasks-preview"></div>
+        <!-- RIGHT -->
+        <div class="dash-col-right">
+          <div class="card">
+            <div class="dash-card-header">
+              <div class="card-title" style="margin-bottom:0">Top contactos</div>
+              <button class="dash-link-btn" onclick="showTab('contactos')">Ver todos →</button>
+            </div>
+            <div class="contact-list" id="dash-contacts"></div>
+          </div>
+          <div class="card dash-activity-card">
+            <div class="card-title">Actividad reciente</div>
+            <div id="dash-activity"></div>
+          </div>
+        </div>
       </div>
-      <div class="card"><div class="card-title">Actividad reciente</div><div id="dash-activity"></div></div>
     </div>
     <!-- CONTACTOS -->
     <div id="tab-contactos" class="tab">
@@ -1249,14 +1294,42 @@ function getOverdueContacts() {
   });
 }
 
+function getGreeting() {
+  const h = new Date().getHours();
+  if(h<12) return 'Buenos días';
+  if(h<18) return 'Buenas tardes';
+  return 'Buenas noches';
+}
+
 function renderDashboard() {
   const done=problems.filter(p=>p.status==='done').length;
   const total=problems.length;
   const rate=total?Math.round(done/total*100):0;
   const avgH=avgResH();
+  const name = currentUser?.displayName?.split(' ')[0] || 'Fixer';
+  const pendingTasks = tasks.filter(t=>!t.done).length;
+  const today = new Date(); today.setHours(0,0,0,0);
+  const overdueTasks = tasks.filter(t=>!t.done&&t.due&&new Date(t.due)<today).length;
+
+  // Welcome banner
+  const welcomeEl = document.getElementById('dash-welcome');
+  if(welcomeEl) {
+    const dateStr = new Date().toLocaleDateString('es',{weekday:'long',day:'numeric',month:'long'});
+    welcomeEl.innerHTML = `
+      <div class="dash-welcome-left">
+        <div class="dash-welcome-greeting">${getGreeting()}, ${name} 👋</div>
+        <div class="dash-welcome-sub">${dateStr}</div>
+      </div>
+      <div class="dash-welcome-right">
+        <div class="dash-welcome-stat">Red: <strong>${contacts.length}</strong> contactos</div>
+        ${pendingTasks?`<div class="dash-welcome-stat">Tareas: <strong>${pendingTasks}</strong> pendientes${overdueTasks?` · <span style="color:#f87171">${overdueTasks} vencidas</span>`:''}</div>`:''}
+        <div class="dash-welcome-stat">Tasa éxito: <strong>${rate}%</strong></div>
+      </div>`;
+  }
+
   document.getElementById('dash-stats').innerHTML=`
-    <div class="stat"><div class="stat-label">Resueltos</div><div class="stat-val">${done}</div><div class="stat-sub up">acumulado</div></div>
-    <div class="stat"><div class="stat-label">Tiempo prom.</div><div class="stat-val">${avgH?avgH.toFixed(1)+'h':'—'}</div><div class="stat-sub">resolución</div></div>
+    <div class="stat"><div class="stat-label">Resueltos</div><div class="stat-val">${done}</div><div class="stat-sub up">↑ acumulado</div></div>
+    <div class="stat"><div class="stat-label">Tiempo prom.</div><div class="stat-val">${avgH?avgH.toFixed(1)+'h':'—'}</div><div class="stat-sub ${avgH&&avgH<3?'up':'warn'}">${avgH&&avgH<3?'↓ mejorando':'resolución'}</div></div>
     <div class="stat"><div class="stat-label">Red</div><div class="stat-val">${contacts.length}</div><div class="stat-sub">contactos</div></div>
     <div class="stat"><div class="stat-label">Tasa éxito</div><div class="stat-val">${rate}%</div><div class="stat-sub ${rate>=80?'up':'warn'}">${rate>=80?'Meta ✓':'Mejorar'}</div></div>`;
 
@@ -1300,12 +1373,20 @@ function renderDashboard() {
   document.getElementById('dash-contacts').innerHTML=top.map(c=>`
     <div class="contact-item" onclick="openDetail('${c.id}')">
       <div class="avatar ${avClass(c.id)}">${initials(c.name)}</div>
-      <div class="contact-info"><div class="contact-name">${c.name}</div><div class="contact-sub">${c.role||''}${c.city?' · '+c.city:''}</div></div>
-      <div class="contact-right"><div class="stars-sm">${'★'.repeat(c.infl)}${'☆'.repeat(5-c.infl)}</div></div>
+      <div class="contact-info">
+        <div class="contact-name">${c.name}</div>
+        <div class="contact-sub">${[c.role,c.company].filter(Boolean).join(' · ')}</div>
+      </div>
+      <div class="contact-right">
+        <div class="stars-sm">${'★'.repeat(c.infl)}${'☆'.repeat(5-c.infl)}</div>
+        ${c.city?`<div class="loc-badge">📍${c.city}</div>`:''}
+      </div>
     </div>`).join('');
 
-  document.getElementById('dash-activity').innerHTML=activity.slice(0,5).map(a=>`
-    <div class="act-item"><div class="act-time">${timeAgo(a.time)}</div><div class="act-text">${a.text}</div></div>`).join('');
+  const actEl = document.getElementById('dash-activity');
+  if(actEl) actEl.innerHTML = activity.length ? activity.slice(0,6).map(a=>`
+    <div class="act-item"><div class="act-time">${timeAgo(a.time)}</div><div class="act-text">${a.text}</div></div>`).join('')
+    : '<div style="color:var(--muted);font-size:.8em;padding:8px 0">Sin actividad reciente</div>';
 }
 
 /* ── CONTACTS ── */
