@@ -484,6 +484,53 @@ body.dark{--bg:#0f1f3d;--bg2:#1a2d4a;--bg3:#243656;--bg4:#2d4268;--border:rgba(1
 .dash-task-due{font-size:10px;font-family:var(--mono);color:var(--muted2);flex-shrink:0;}
 .dash-task-due.overdue{color:var(--red);}
 
+/* AI CHAT */
+.ai-wrap{display:flex;flex-direction:column;height:calc(100dvh - var(--nav-h) - 44px - 28px);max-height:700px;}
+@media(max-width:768px){.ai-wrap{height:calc(100dvh - var(--nav-h) - var(--bnav-h) - var(--safe-b) - 24px);}}
+.ai-header{background:var(--navy);border-radius:var(--r2);padding:14px 16px;margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+.ai-header-icon{width:40px;height:40px;border-radius:50%;background:var(--cyan);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.ai-header-info{flex:1;}
+.ai-header-name{font-size:.93em;font-weight:700;color:#fff;}
+.ai-header-sub{font-size:.72em;color:rgba(255,255,255,.5);font-family:var(--mono);}
+.ai-header-status{display:flex;align-items:center;gap:5px;font-size:.67em;color:rgba(255,255,255,.5);font-family:var(--mono);}
+.ai-status-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;}
+.ai-status-dot.thinking{background:var(--amber);animation:pulse2 1s ease-in-out infinite;}
+@keyframes pulse2{0%,100%{opacity:1}50%{opacity:.4}}
+.ai-quick-btns{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+.ai-quick-btn{padding:7px 12px;border-radius:99px;border:1.5px solid var(--border2);background:var(--bg2);font-size:.73em;color:var(--blue);cursor:pointer;font-family:var(--mono);transition:all .15s;white-space:nowrap;}
+.ai-quick-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
+.ai-messages{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:4px 0;margin-bottom:10px;}
+.ai-messages::-webkit-scrollbar{width:3px;}
+.ai-messages::-webkit-scrollbar-thumb{background:var(--border2);border-radius:99px;}
+.ai-msg{display:flex;gap:10px;align-items:flex-start;}
+.ai-msg.user{flex-direction:row-reverse;}
+.ai-msg-avatar{width:30px;height:30px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;}
+.ai-msg.assistant .ai-msg-avatar{background:var(--cyan);color:var(--navy);}
+.ai-msg.user .ai-msg-avatar{background:var(--navy);color:#fff;}
+.ai-msg-bubble{max-width:82%;padding:10px 13px;border-radius:14px;font-size:.87em;line-height:1.6;}
+.ai-msg.assistant .ai-msg-bubble{background:var(--bg2);border:1px solid var(--border);border-bottom-left-radius:4px;color:var(--text);}
+.ai-msg.user .ai-msg-bubble{background:var(--navy);color:#fff;border-bottom-right-radius:4px;}
+.ai-msg-bubble strong{color:var(--cyan);}
+.ai-msg.user .ai-msg-bubble strong{color:#7dd3fc;}
+.ai-thinking{display:flex;gap:4px;align-items:center;padding:12px 14px;}
+.ai-thinking-dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);animation:bounce 1.2s ease-in-out infinite;}
+.ai-thinking-dot:nth-child(2){animation-delay:.2s;}
+.ai-thinking-dot:nth-child(3){animation-delay:.4s;}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+.ai-input-row{display:flex;gap:8px;align-items:flex-end;}
+.ai-input{flex:1;padding:11px 14px;background:var(--bg2);border:1.5px solid var(--border2);border-radius:var(--r2);font-family:var(--sans);font-size:.87em;color:var(--text);outline:none;resize:none;max-height:120px;min-height:44px;-webkit-appearance:none;line-height:1.5;}
+.ai-input:focus{border-color:var(--cyan);}
+.ai-send-btn{width:44px;height:44px;border-radius:var(--r);background:var(--navy);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s;}
+.ai-send-btn:hover{background:var(--blue);}
+.ai-send-btn:disabled{opacity:.4;cursor:not-allowed;}
+.ai-send-btn svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;}
+.ai-contact-chip{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:99px;background:rgba(14,165,233,.12);border:1px solid rgba(14,165,233,.3);font-size:.72em;color:var(--blue);cursor:pointer;margin:2px;}
+.ai-contact-chip:hover{background:rgba(14,165,233,.2);}
+.ai-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;gap:10px;color:var(--muted);text-align:center;padding:20px;}
+.ai-empty-icon{font-size:40px;}
+.ai-empty-title{font-size:.93em;font-weight:600;color:var(--navy);}
+.ai-empty-sub{font-size:.78em;color:var(--muted);line-height:1.5;max-width:280px;}
+
 /* EMPTY */
 .empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;}
 .empty-icon{font-size:36px;margin-bottom:10px;}
@@ -602,6 +649,7 @@ body.dark{--bg:#0f1f3d;--bg2:#1a2d4a;--bg3:#243656;--bg4:#2d4268;--border:rgba(1
     <button class="dnav-tab" onclick="showTab('roadmap')" data-tab="roadmap">Roadmap</button>
     <button class="dnav-tab" onclick="showTab('modulos')" data-tab="modulos">Módulos</button>
     <button class="dnav-tab" onclick="showTab('tareas')" data-tab="tareas">Tareas</button>
+    <button class="dnav-tab" onclick="showTab('ia')" data-tab="ia">✦ Fixer AI</button>
     <button class="dnav-tab" onclick="showTab('blog')" data-tab="blog">Blog</button>
     <button class="dnav-tab" onclick="showTab('ajustes')" data-tab="ajustes">Ajustes</button>
   </div>
@@ -706,6 +754,37 @@ body.dark{--bg:#0f1f3d;--bg2:#1a2d4a;--bg3:#243656;--bg4:#2d4268;--border:rgba(1
       </div>
       <div id="task-list-pending"></div>
       <div id="task-list-done"></div>
+    </div>
+
+    <!-- FIXER AI -->
+    <div id="tab-ia" class="tab">
+      <div class="ai-wrap">
+        <div class="ai-header">
+          <div class="ai-header-icon">✦</div>
+          <div class="ai-header-info">
+            <div class="ai-header-name">Fixer AI</div>
+            <div class="ai-header-sub">Asistente estratégico con contexto de tu red</div>
+          </div>
+          <div class="ai-header-status">
+            <div class="ai-status-dot" id="ai-status-dot"></div>
+            <span id="ai-status-text">Listo</span>
+          </div>
+        </div>
+        <div class="ai-quick-btns" id="ai-quick-btns"></div>
+        <div class="ai-messages" id="ai-messages">
+          <div class="ai-empty" id="ai-empty">
+            <div class="ai-empty-icon">✦</div>
+            <div class="ai-empty-title">Fixer AI</div>
+            <div class="ai-empty-sub">Cuéntame un problema, un objetivo o una situación. Analizaré tu red y te daré una estrategia concreta.</div>
+          </div>
+        </div>
+        <div class="ai-input-row">
+          <textarea class="ai-input" id="ai-input" placeholder="Describe tu situación..." rows="1" onkeydown="aiHandleKey(event)" oninput="aiAutoResize(this)"></textarea>
+          <button class="ai-send-btn" id="ai-send-btn" onclick="aiSend()">
+            <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+      </div>
     </div>
 
     <!-- BLOG -->
@@ -870,6 +949,10 @@ body.dark{--bg:#0f1f3d;--bg2:#1a2d4a;--bg3:#243656;--bg4:#2d4268;--border:rgba(1
       <button class="bnav-tab" onclick="showTab('tareas')" data-btab="tareas">
         <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
         <span>Tareas</span>
+      </button>
+      <button class="bnav-tab" onclick="showTab('ia')" data-btab="ia">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg>
+        <span>IA</span>
       </button>
       <button class="bnav-tab" onclick="showTab('ajustes')" data-btab="ajustes">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
@@ -1239,6 +1322,7 @@ onAuthStateChanged(auth, user => {
     renderModules();
     renderRoadmap();
     applySettings();
+    aiRenderQuickBtns();
   } else {
     currentUser = null;
     contacts=[]; problems=[]; activity=[];
@@ -1951,7 +2035,7 @@ function applyFontSize(size,updateUI=true){
 }
 
 const _origShowTab=window.showTab;
-window.showTab=id=>{_origShowTab(id);if(id==='ajustes')renderFontOptions();if(id==='blog')renderBlog();if(id==='tareas'){renderTasks();renderTaskFilters();}};
+window.showTab=id=>{_origShowTab(id);if(id==='ajustes')renderFontOptions();if(id==='blog')renderBlog();if(id==='tareas'){renderTasks();renderTaskFilters();}if(id==='ia')aiRenderQuickBtns();};
 
 /* ════ BLOG ════ */
 let articles=[];let currentArticleId=null;let writeKeywords=[];let blogFilterCat='all';let unsubArticles=null;
@@ -2325,6 +2409,225 @@ window.toggleTask = async (id) => {
 window.deleteTask = async (id) => {
   await deleteDoc(doc(db,'users',currentUser.uid,'tasks',id));
   toast('🗑 Tarea eliminada');
+};
+
+
+/* ════ FIXER AI ════ */
+let aiHistory = [];
+let aiThinking = false;
+
+const AI_QUICK = [
+  {label:'🚨 Resolver un problema', prompt:'Tengo un problema urgente que necesito resolver. ¿Cómo me ayudas a analizarlo y activar mi red?'},
+  {label:'👤 ¿A quién llamar?', prompt:'Necesito resolver una situación específica. Analiza mis contactos y dime a quién debería contactar primero y por qué.'},
+  {label:'🤝 Preparar negociación', prompt:'Tengo una negociación importante próximamente. Ayúdame a prepararme con una estrategia concreta.'},
+  {label:'🎯 Activar mi red', prompt:'Quiero lograr un objetivo específico. ¿Cómo puedo activar estratégicamente mi red de contactos para lograrlo?'},
+  {label:'📋 Revisar mis tareas', prompt:'Revisa mis tareas pendientes y ayúdame a priorizar qué debo hacer primero hoy.'},
+];
+
+function buildAIContext() {
+  const name = currentUser?.displayName || 'el usuario';
+  const topContacts = [...contacts]
+    .sort((a,b)=>(b.infl+b.trust)-(a.infl+a.trust))
+    .slice(0,15)
+    .map(c=>`- ${c.name} | ${c.role||'—'} en ${c.company||'—'} | ${c.city||'—'} | Industria: ${c.industry||c.specialty||'—'} | Influencia: ${c.infl}/5 | Confianza: ${c.trust}/5${c.notes?' | Notas: '+c.notes.slice(0,80):''}`)
+    .join('\n');
+
+  const activeProbs = problems.filter(p=>p.status==='active').slice(0,5)
+    .map(p=>`- [${p.urg==='high'?'CRÍTICO':p.urg==='med'?'URGENTE':'NORMAL'}] ${p.desc} (${p.cat})`)
+    .join('\n');
+
+  const pendingTasks = tasks.filter(t=>!t.done).slice(0,8)
+    .map(t=>{
+      const c = contacts.find(x=>x.id===t.contactId);
+      return `- [${t.priority==='high'?'ALTA':t.priority==='med'?'MEDIA':'BAJA'}] ${t.title}${t.due?' (vence: '+t.due+')':''}${c?' → vinculada a: '+c.name:''}`;
+    })
+    .join('\n');
+
+  const resolvedCount = problems.filter(p=>p.status==='done').length;
+  const rate = problems.length ? Math.round(resolvedCount/problems.length*100) : 0;
+
+  return `Eres Fixer AI, el asistente estratégico personal de ${name} dentro de Fixer OS. Tu rol es ayudar a resolver problemas complejos, activar redes de contacto y preparar negociaciones difíciles con estrategia y precisión.
+
+CONTEXTO DEL FIXER:
+- Nombre: ${name}
+- Contactos en red: ${contacts.length}
+- Problemas resueltos: ${resolvedCount} (tasa de éxito: ${rate}%)
+- Problemas activos: ${problems.filter(p=>p.status==='active').length}
+- Tareas pendientes: ${tasks.filter(t=>!t.done).length}
+
+RED DE CONTACTOS (top ${Math.min(15,contacts.length)} por influencia y confianza):
+${topContacts || 'Sin contactos registrados aún.'}
+
+PROBLEMAS ACTIVOS:
+${activeProbs || 'Sin problemas activos.'}
+
+TAREAS PENDIENTES:
+${pendingTasks || 'Sin tareas pendientes.'}
+
+INSTRUCCIONES:
+- Responde siempre en español, de forma directa y accionable
+- Cuando sugiereas contactos, menciona sus nombres exactos de la red
+- Sé específico: di QUÉ hacer, QUIÉN llamar, QUÉ decir y CUÁNDO
+- Usa tu conocimiento de la red para personalizar cada respuesta
+- Si detectas urgencia, prioriza las acciones más críticas primero
+- Formato: usa negritas para nombres de contactos y acciones clave
+- Máximo 4 párrafos por respuesta, directo al grano`;
+}
+
+function aiRenderQuickBtns() {
+  const el = document.getElementById('ai-quick-btns');
+  if(!el) return;
+  el.innerHTML = AI_QUICK.map(q =>
+    `<button class="ai-quick-btn" onclick="aiSendQuick('${q.prompt.replace(/'/g,"\\'")}')">
+      ${q.label}
+    </button>`
+  ).join('');
+}
+
+function aiAddMessage(role, text) {
+  const emptyEl = document.getElementById('ai-empty');
+  if(emptyEl) emptyEl.remove();
+
+  const msgs = document.getElementById('ai-messages');
+  if(!msgs) return;
+
+  const initials = role === 'user'
+    ? (currentUser?.displayName||'Yo').split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase()
+    : '✦';
+
+  const div = document.createElement('div');
+  div.className = `ai-msg ${role}`;
+
+  // Format text: **bold** → <strong>
+  const formatted = text
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\n/g, '<br>');
+
+  div.innerHTML = `
+    <div class="ai-msg-avatar">${initials}</div>
+    <div class="ai-msg-bubble">${formatted}</div>`;
+
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function aiShowThinking() {
+  const msgs = document.getElementById('ai-messages');
+  if(!msgs) return;
+  const emptyEl = document.getElementById('ai-empty');
+  if(emptyEl) emptyEl.remove();
+  const div = document.createElement('div');
+  div.className = 'ai-msg assistant';
+  div.id = 'ai-thinking-bubble';
+  div.innerHTML = `
+    <div class="ai-msg-avatar">✦</div>
+    <div class="ai-msg-bubble ai-thinking">
+      <div class="ai-thinking-dot"></div>
+      <div class="ai-thinking-dot"></div>
+      <div class="ai-thinking-dot"></div>
+    </div>`;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function aiRemoveThinking() {
+  const el = document.getElementById('ai-thinking-bubble');
+  if(el) el.remove();
+}
+
+function aiSetStatus(thinking) {
+  const dot = document.getElementById('ai-status-dot');
+  const txt = document.getElementById('ai-status-text');
+  if(dot) dot.className = 'ai-status-dot' + (thinking?' thinking':'');
+  if(txt) txt.textContent = thinking ? 'Analizando...' : 'Listo';
+  const btn = document.getElementById('ai-send-btn');
+  if(btn) btn.disabled = thinking;
+  aiThinking = thinking;
+}
+
+window.aiSend = async () => {
+  if(aiThinking) return;
+  const input = document.getElementById('ai-input');
+  const text = input?.value?.trim();
+  if(!text) return;
+  input.value = '';
+  aiAutoResize(input);
+  await aiProcess(text);
+};
+
+window.aiSendQuick = async (prompt) => {
+  if(aiThinking) return;
+  await aiProcess(prompt);
+};
+
+async function aiProcess(userText) {
+  aiAddMessage('user', userText);
+  aiHistory.push({role:'user', content: userText});
+  aiShowThinking();
+  aiSetStatus(true);
+
+  // Hide quick btns after first message
+  const qb = document.getElementById('ai-quick-btns');
+  if(qb && aiHistory.length > 1) qb.style.display = 'none';
+
+  try {
+    const systemPrompt = buildAIContext();
+    const messages = aiHistory.slice(-10); // last 10 messages for context
+
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: systemPrompt,
+        messages: messages
+      })
+    });
+
+    const data = await response.json();
+    const reply = data.content?.[0]?.text || 'No pude generar una respuesta. Intenta de nuevo.';
+
+    aiRemoveThinking();
+    aiAddMessage('assistant', reply);
+    aiHistory.push({role:'assistant', content: reply});
+
+    // Save to Firestore activity
+    addActivity('<strong>Fixer AI</strong> — consulta realizada');
+
+  } catch(err) {
+    aiRemoveThinking();
+    aiAddMessage('assistant', 'Hubo un error al conectar con Fixer AI. Verifica tu conexión e intenta de nuevo.');
+    console.error('AI error:', err);
+  }
+
+  aiSetStatus(false);
+}
+
+window.aiHandleKey = (e) => {
+  if(e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    aiSend();
+  }
+};
+
+window.aiAutoResize = (el) => {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+};
+
+window.aiClearChat = () => {
+  aiHistory = [];
+  const msgs = document.getElementById('ai-messages');
+  if(msgs) msgs.innerHTML = `
+    <div class="ai-empty" id="ai-empty">
+      <div class="ai-empty-icon">✦</div>
+      <div class="ai-empty-title">Fixer AI</div>
+      <div class="ai-empty-sub">Cuéntame un problema, un objetivo o una situación. Analizaré tu red y te daré una estrategia concreta.</div>
+    </div>`;
+  const qb = document.getElementById('ai-quick-btns');
+  if(qb) { qb.style.display = 'flex'; aiRenderQuickBtns(); }
+  aiSetStatus(false);
 };
 
 
