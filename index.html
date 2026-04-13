@@ -363,6 +363,76 @@
 /* DARK MODE */
 body.dark{--bg:#0f1f3d;--bg2:#1a2d4a;--bg3:#243656;--bg4:#2d4268;--border:rgba(14,165,233,0.12);--border2:rgba(14,165,233,0.2);--text:#e0f2fe;--muted:#7dd3fc;--muted2:#38bdf8;--navy:#e0f2fe;--navy2:#bae6fd;--navy3:#7dd3fc;}
 
+/* BLOG */
+.blog-grid{display:flex;flex-direction:column;gap:14px;}
+.blog-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;cursor:pointer;transition:border-color .15s;}
+.blog-card:hover{border-color:var(--cyan);}
+.blog-card-cover{height:140px;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:40px;border-bottom:1px solid var(--border);}
+.blog-card-body{padding:14px 16px;}
+.blog-card-meta{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;}
+.blog-cat{display:inline-flex;padding:3px 10px;border-radius:99px;font-size:10px;font-family:var(--mono);font-weight:600;}
+.cat-proyecto{background:#e0f2fe;color:#0369a1;border:1px solid #bae6fd;}
+.cat-análisis{background:#dcfce7;color:#15803d;border:1px solid #bbf7d0;}
+.cat-metodología{background:#f3e8ff;color:#7c3aed;border:1px solid #e9d5ff;}
+.cat-tendencia{background:#fef3c7;color:#b45309;border:1px solid #fde68a;}
+.cat-opinión{background:#fce7f3;color:#be185d;border:1px solid #fbcfe8;}
+.cat-guía{background:#e0f2fe;color:#0e7490;border:1px solid #a5f3fc;}
+.blog-read-time{font-size:10px;color:var(--muted2);font-family:var(--mono);}
+.blog-featured{font-size:10px;color:var(--amber);font-family:var(--mono);font-weight:600;}
+.blog-card-title{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:6px;line-height:1.3;}
+.blog-card-abstract{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.blog-card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px solid var(--border);}
+.blog-author{display:flex;align-items:center;gap:8px;}
+.blog-author-av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;flex-shrink:0;background:#e0f2fe;color:#0369a1;}
+.blog-author-name{font-size:12px;font-weight:500;color:var(--navy);}
+.blog-author-date{font-size:10px;color:var(--muted2);font-family:var(--mono);}
+.blog-stats{display:flex;gap:10px;font-size:10px;color:var(--muted2);font-family:var(--mono);}
+.blog-locked{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--muted2);}
+
+/* BLOG ARTICLE VIEW */
+.article-backdrop{position:fixed;inset:0;background:var(--bg);z-index:300;overflow-y:auto;transform:translateX(100%);transition:transform .3s cubic-bezier(.32,1,.5,1);}
+.article-backdrop.open{transform:translateX(0);}
+.article-topbar{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10;}
+.article-back{background:none;border:none;cursor:pointer;color:var(--navy);display:flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:0;}
+.article-back svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;}
+.article-body{max-width:680px;margin:0 auto;padding:24px 16px 60px;}
+.article-header{margin-bottom:24px;}
+.article-cats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+.article-title{font-size:1.6em;font-weight:700;color:var(--navy);line-height:1.3;margin-bottom:12px;}
+.article-byline{display:flex;align-items:center;gap:10px;padding:12px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:20px;}
+.article-byline-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;background:#e0f2fe;color:#0369a1;flex-shrink:0;}
+.article-byline-info{flex:1;}
+.article-byline-name{font-size:13px;font-weight:600;color:var(--navy);}
+.article-byline-meta{font-size:11px;color:var(--muted);font-family:var(--mono);}
+.article-abstract{background:var(--bg3);border-left:3px solid var(--cyan);border-radius:0 var(--r) var(--r) 0;padding:14px 16px;margin-bottom:24px;font-size:.93em;color:var(--muted);line-height:1.6;font-style:italic;}
+.article-section{margin-bottom:24px;}
+.article-section-title{font-size:1.1em;font-weight:700;color:var(--navy);margin-bottom:10px;padding-bottom:6px;border-bottom:2px solid var(--cyan);}
+.article-content{font-size:.93em;color:var(--text);line-height:1.8;white-space:pre-wrap;}
+.article-keywords{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
+.article-kw{padding:3px 10px;border-radius:99px;font-size:10px;font-family:var(--mono);background:var(--bg3);border:1px solid var(--border2);color:var(--muted);}
+.article-references{background:var(--bg3);border-radius:var(--r);padding:14px 16px;border:1px solid var(--border);}
+.article-ref-item{font-size:11px;color:var(--muted);line-height:1.6;margin-bottom:6px;padding-left:20px;text-indent:-20px;}
+.article-locked-wall{text-align:center;padding:40px 20px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);margin:20px 0;}
+.article-locked-icon{font-size:36px;margin-bottom:12px;}
+.article-locked-title{font-size:1.1em;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.article-locked-sub{font-size:13px;color:var(--muted);margin-bottom:16px;}
+
+/* BLOG WRITE */
+.write-section{margin-bottom:16px;}
+.write-section-label{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted2);font-family:var(--mono);margin-bottom:8px;padding:10px 0 6px;border-top:1px solid var(--border);}
+.write-section-label:first-child{border-top:none;padding-top:0;}
+.editor-area{width:100%;min-height:120px;padding:.7rem .75rem;background:var(--bg2);border:1.5px solid var(--border2);border-radius:var(--r);font-family:var(--sans);font-size:.93em;color:var(--text);outline:none;resize:vertical;line-height:1.7;}
+.editor-area:focus{border-color:var(--cyan);}
+.char-count{font-size:10px;color:var(--muted2);font-family:var(--mono);text-align:right;margin-top:3px;}
+.keyword-input-row{display:flex;gap:8px;margin-bottom:8px;}
+.keyword-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.keyword-tag{display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:99px;background:var(--bg3);border:1px solid var(--border2);font-size:11px;color:var(--navy);}
+.keyword-tag button{background:none;border:none;cursor:pointer;color:var(--muted);font-size:14px;line-height:1;padding:0;}
+
+/* EMPTY */
+.empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;}
+.empty-icon{font-size:36px;margin-bottom:10px;}
+
 /* EMPTY */
 .empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;}
 .empty-icon{font-size:36px;margin-bottom:10px;}
@@ -462,6 +532,7 @@ body.dark{--bg:#0f1f3d;--bg2:#1a2d4a;--bg3:#243656;--bg4:#2d4268;--border:rgba(1
     <button class="dnav-tab" onclick="showTab('kpis')" data-tab="kpis">KPIs</button>
     <button class="dnav-tab" onclick="showTab('roadmap')" data-tab="roadmap">Roadmap</button>
     <button class="dnav-tab" onclick="showTab('modulos')" data-tab="modulos">Módulos</button>
+    <button class="dnav-tab" onclick="showTab('blog')" data-tab="blog">Blog</button>
     <button class="dnav-tab" onclick="showTab('ajustes')" data-tab="ajustes">Ajustes</button>
   </div>
   <!-- CONTENT -->
@@ -513,6 +584,15 @@ body.dark{--bg:#0f1f3d;--bg2:#1a2d4a;--bg3:#243656;--bg4:#2d4268;--border:rgba(1
     <div id="tab-modulos" class="tab">
       <p style="font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.5">Toca un módulo para abrir una sesión de entrenamiento.</p>
       <div class="module-grid" id="module-grid"></div>
+    </div>
+
+    <!-- BLOG -->
+    <div id="tab-blog" class="tab">
+      <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center">
+        <button class="btn btn-primary btn-sm" onclick="openWriteModal()">✍️ Escribir artículo</button>
+        <div style="display:flex;gap:6px;flex-wrap:wrap" id="blog-filter-tags"></div>
+      </div>
+      <div class="blog-grid" id="blog-grid"></div>
     </div>
 
     <!-- AJUSTES -->
@@ -789,6 +869,72 @@ body.dark{--bg:#0f1f3d;--bg2:#1a2d4a;--bg3:#243656;--bg4:#2d4268;--border:rgba(1
   </div>
 </div>
 
+<!-- ARTICLE VIEW -->
+<div class="article-backdrop" id="article-view">
+  <div class="article-topbar">
+    <button class="article-back" onclick="closeArticle()">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Blog
+    </button>
+    <div style="margin-left:auto;display:flex;gap:8px" id="article-actions"></div>
+  </div>
+  <div class="article-body" id="article-body"></div>
+</div>
+
+<!-- WRITE ARTICLE MODAL -->
+<div class="modal-backdrop" id="write-modal" onclick="">
+  <div class="modal" onclick="event.stopPropagation()" style="max-width:600px">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="write-modal-title">Nuevo artículo</div>
+    <input type="hidden" id="write-id">
+
+    <div class="write-section-label">Información general</div>
+    <div class="field" style="margin-bottom:10px"><label>Título del artículo *</label><input id="w-title" placeholder="Ej: Cómo reduje el 40% del tiempo de entrega con S&OP"></div>
+    <div class="field-row" style="margin-bottom:10px">
+      <div class="field"><label>Categoría *</label>
+        <select id="w-cat">
+          <option value="caso de éxito">🏗️ Caso de éxito</option>
+          <option value="análisis">📊 Análisis</option>
+          <option value="metodología">⚙️ Metodología</option>
+          <option value="tendencia">🌐 Tendencia</option>
+          <option value="opinión">💡 Opinión</option>
+          <option value="guía">🎓 Guía práctica</option>
+        </select>
+      </div>
+      <div class="field"><label>Visibilidad</label>
+        <select id="w-visibility">
+          <option value="featured">⭐ Destacado (visible sin login)</option>
+          <option value="members">🔒 Solo miembros</option>
+        </select>
+      </div>
+    </div>
+    <div class="field" style="margin-bottom:10px">
+      <label>Palabras clave (3–6)</label>
+      <div class="keyword-input-row">
+        <input id="w-kw-input" placeholder="Escribe y presiona Enter" style="flex:1;padding:8px 12px;background:var(--bg3);border:1.5px solid var(--border2);border-radius:var(--r);font-family:var(--sans);font-size:13px;color:var(--text);outline:none" onkeydown="addKeyword(event)">
+      </div>
+      <div class="keyword-tags" id="keyword-tags"></div>
+    </div>
+
+    <div class="write-section-label">Resumen (Abstract)</div>
+    <div class="field" style="margin-bottom:4px">
+      <label>Abstract * — visible públicamente (150–250 palabras)</label>
+      <textarea class="editor-area" id="w-abstract" placeholder="Describe el contexto, el problema abordado y el resultado principal del artículo..." oninput="updateCharCount('w-abstract','abstract-count',250)"></textarea>
+    </div>
+    <div class="char-count" id="abstract-count">0 / 250 palabras</div>
+
+    <div class="write-section-label">Cuerpo del artículo</div>
+    <div class="field" style="margin-bottom:10px"><label>01 — Introducción / Contexto *</label><textarea class="editor-area" id="w-intro" placeholder="¿Por qué es relevante este tema? ¿Cuál era la situación inicial?"></textarea></div>
+    <div class="field" style="margin-bottom:10px"><label>02 — Desarrollo / Metodología *</label><textarea class="editor-area" id="w-method" placeholder="¿Qué se hizo? Procesos, herramientas, decisiones, fases del proyecto..."></textarea></div>
+    <div class="field" style="margin-bottom:10px"><label>03 — Resultados / Hallazgos</label><textarea class="editor-area" id="w-results" placeholder="¿Qué se logró? Datos, métricas, comparativas antes/después..."></textarea></div>
+    <div class="field" style="margin-bottom:10px"><label>04 — Conclusiones / Lecciones aprendidas *</label><textarea class="editor-area" id="w-conclusions" placeholder="¿Qué aprendiste? ¿Qué recomendarías? ¿Qué harías diferente?"></textarea></div>
+    <div class="field" style="margin-bottom:10px"><label>05 — Referencias (formato APA 7ª ed. — opcional)</label><textarea class="editor-area" id="w-refs" placeholder="Apellido, N. (Año). Título. Editorial.&#10;Ej: Chopra, S. (2019). Supply Chain Management. Pearson."></textarea></div>
+
+    <button class="btn btn-primary" style="width:100%;margin-top:8px" id="write-save-btn" onclick="saveArticle()">Publicar artículo</button>
+    <button class="btn" style="width:100%;margin-top:8px" onclick="saveArticle('draft')">Guardar borrador</button>
+  </div>
+</div>
+
 <div class="confirm-backdrop" id="confirm-backdrop">
   <div class="confirm-box">
     <div class="confirm-title">¿Eliminar contacto?</div>
@@ -915,6 +1061,7 @@ window.doLogout = async () => {
   if(unsubContacts) unsubContacts();
   if(unsubProblems) unsubProblems();
   if(unsubActivity) unsubActivity();
+  if(unsubArticles) unsubArticles();
   await signOut(auth);
 };
 
@@ -967,6 +1114,7 @@ function subscribeToData() {
     }
   );
 
+  subscribeToBlog();
   unsubActivity = onSnapshot(
     query(collection(db,'users',uid,'activity'), orderBy('time','desc')),
     snap => {
@@ -1604,7 +1752,174 @@ function applyFontSize(size,updateUI=true){
 }
 
 const _origShowTab=window.showTab;
-window.showTab=id=>{_origShowTab(id);if(id==='ajustes')renderFontOptions();};
+window.showTab=id=>{_origShowTab(id);if(id==='ajustes')renderFontOptions();if(id==='blog')renderBlog();};
+
+/* ════ BLOG ════ */
+let articles=[];let currentArticleId=null;let writeKeywords=[];let blogFilterCat='all';let unsubArticles=null;
+const BLOG_CATS=[{id:'all',label:'Todos',icon:''},{id:'caso de éxito',label:'Caso de éxito',icon:'🏗️'},{id:'análisis',label:'Análisis',icon:'📊'},{id:'metodología',label:'Metodología',icon:'⚙️'},{id:'tendencia',label:'Tendencia',icon:'🌐'},{id:'opinión',label:'Opinión',icon:'💡'},{id:'guía',label:'Guía práctica',icon:'🎓'}];
+const CAT_ICONS={'caso de éxito':'🏗️','análisis':'📊','metodología':'⚙️','tendencia':'🌐','opinión':'💡','guía':'🎓'};
+
+function subscribeToBlog(){
+  if(unsubArticles)unsubArticles();
+  const q2=query(collection(db,'articles'),orderBy('createdAt','desc'));
+  unsubArticles=onSnapshot(q2,snap=>{articles=snap.docs.map(d=>({id:d.id,...d.data()}));renderBlog();},err=>console.error(err));
+}
+
+function readTime(a){
+  const words=[a.abstract,a.intro,a.method,a.results,a.conclusions].filter(Boolean).join(' ').split(/\s+/).length;
+  return Math.max(1,Math.round(words/200));
+}
+
+function renderBlogFilters(){
+  const el=document.getElementById('blog-filter-tags');if(!el)return;
+  el.innerHTML=BLOG_CATS.map(c=>`<span class="tag ${blogFilterCat===c.id?'active':''}" onclick="setBlogFilter('${c.id}')">${c.icon?c.icon+' ':''}${c.label}</span>`).join('');
+}
+window.setBlogFilter=cat=>{blogFilterCat=cat;renderBlogFilters();renderBlog();};
+
+function renderBlog(){
+  renderBlogFilters();
+  let list=articles.filter(a=>a.status!=='draft'||a.authorId===currentUser?.uid);
+  if(blogFilterCat!=='all')list=list.filter(a=>a.cat===blogFilterCat);
+  const el=document.getElementById('blog-grid');if(!el)return;
+  if(!list.length){el.innerHTML='<div class="empty"><div class="empty-icon">📝</div>Sin artículos aún. ¡Sé el primero en publicar!</div>';return;}
+  el.innerHTML=list.map(a=>{
+    const isLocked=a.visibility==='members'&&!currentUser;
+    const rt=readTime(a);
+    const isDraft=a.status==='draft';
+    const catSlug=(a.cat||'análisis').replace(/\s+/g,'-').replace(/[éè]/g,'e').replace(/[óò]/g,'o').replace(/[íì]/g,'i');
+    return `<div class="blog-card" onclick="openArticle('${a.id}')">
+      <div class="blog-card-cover">${CAT_ICONS[a.cat]||'📝'}</div>
+      <div class="blog-card-body">
+        <div class="blog-card-meta">
+          <span class="blog-cat cat-${catSlug}">${CAT_ICONS[a.cat]||''} ${a.cat||'—'}</span>
+          ${a.visibility==='featured'?'<span class="blog-featured">⭐ Destacado</span>':''}
+          ${isDraft?'<span style="font-size:10px;color:var(--muted2);font-family:var(--mono)">Borrador</span>':''}
+          <span class="blog-read-time">⏱ ${rt} min</span>
+        </div>
+        <div class="blog-card-title">${a.title||'Sin título'}</div>
+        <div class="blog-card-abstract">${a.abstract||''}</div>
+        <div class="blog-card-footer">
+          <div class="blog-author">
+            <div class="blog-author-av">${(a.authorName||'?').split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase()}</div>
+            <div><div class="blog-author-name">${a.authorName||'Autor'}</div><div class="blog-author-date">${a.createdAt?new Date(a.createdAt.seconds*1000).toLocaleDateString('es',{day:'2-digit',month:'short',year:'numeric'}):''}</div></div>
+          </div>
+          <div>${isLocked?'<span class="blog-locked">🔒 Miembros</span>':'<span style="font-size:10px;color:var(--muted2)">👁 Leer</span>'}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+window.openArticle=(id)=>{
+  const a=articles.find(x=>x.id===id);if(!a)return;
+  currentArticleId=id;
+  const isLocked=a.visibility==='members'&&!currentUser;
+  const rt=readTime(a);
+  const isOwner=currentUser&&a.authorId===currentUser.uid;
+  const catSlug=(a.cat||'análisis').replace(/\s+/g,'-').replace(/[éè]/g,'e').replace(/[óò]/g,'o').replace(/[íì]/g,'i');
+  document.getElementById('article-actions').innerHTML=isOwner?`<button class="btn btn-sm" onclick="editArticle('${id}')">✏️ Editar</button><button class="btn btn-sm btn-danger" onclick="deleteArticle('${id}')">🗑</button>`:'';
+  const body=document.getElementById('article-body');
+  body.innerHTML=`
+    <div class="article-header">
+      <div class="article-cats"><span class="blog-cat cat-${catSlug}">${CAT_ICONS[a.cat]||''} ${a.cat}</span>${a.visibility==='featured'?'<span class="blog-featured">⭐ Destacado</span>':''}</div>
+      <div class="article-title">${a.title}</div>
+      <div class="article-byline">
+        <div class="article-byline-av">${(a.authorName||'?').split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase()}</div>
+        <div class="article-byline-info">
+          <div class="article-byline-name">${a.authorName||'Autor'}</div>
+          <div class="article-byline-meta">${a.createdAt?new Date(a.createdAt.seconds*1000).toLocaleDateString('es',{day:'2-digit',month:'long',year:'numeric'}):''} · ⏱ ${rt} min lectura</div>
+        </div>
+      </div>
+    </div>
+    ${a.abstract?`<div class="article-abstract">${a.abstract}</div>`:''}
+    ${isLocked?`<div class="article-locked-wall"><div class="article-locked-icon">🔒</div><div class="article-locked-title">Contenido exclusivo para miembros</div><div class="article-locked-sub">Crea una cuenta o inicia sesión para leer el artículo completo.</div><button class="btn btn-primary" onclick="closeArticle()">Iniciar sesión</button></div>`:`
+      ${a.intro?`<div class="article-section"><div class="article-section-title">01 — Introducción</div><div class="article-content">${a.intro}</div></div>`:''}
+      ${a.method?`<div class="article-section"><div class="article-section-title">02 — Metodología</div><div class="article-content">${a.method}</div></div>`:''}
+      ${a.results?`<div class="article-section"><div class="article-section-title">03 — Resultados</div><div class="article-content">${a.results}</div></div>`:''}
+      ${a.conclusions?`<div class="article-section"><div class="article-section-title">04 — Conclusiones</div><div class="article-content">${a.conclusions}</div></div>`:''}
+      ${a.keywords?.length?`<div class="article-section"><div class="article-section-title">Palabras clave</div><div class="article-keywords">${a.keywords.map(k=>`<span class="article-kw">${k}</span>`).join('')}</div></div>`:''}
+      ${a.refs?`<div class="article-section"><div class="article-section-title">Referencias</div><div class="article-references"><div class="article-ref-item">${a.refs}</div></div></div>`:''}
+    `}`;
+  document.getElementById('article-view').classList.add('open');
+};
+
+window.closeArticle=()=>{document.getElementById('article-view').classList.remove('open');currentArticleId=null;};
+
+window.openWriteModal=()=>{
+  document.getElementById('write-modal-title').textContent='Nuevo artículo';
+  document.getElementById('write-save-btn').textContent='Publicar artículo';
+  document.getElementById('write-id').value='';
+  writeKeywords=[];
+  ['w-title','w-abstract','w-intro','w-method','w-results','w-conclusions','w-refs'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('w-cat').value='caso de éxito';
+  document.getElementById('w-visibility').value='featured';
+  renderKeywordTags();
+  openModal('write-modal');
+};
+
+window.editArticle=(id)=>{
+  const a=articles.find(x=>x.id===id);if(!a)return;
+  closeArticle();
+  document.getElementById('write-modal-title').textContent='Editar artículo';
+  document.getElementById('write-save-btn').textContent='Guardar cambios';
+  document.getElementById('write-id').value=id;
+  document.getElementById('w-title').value=a.title||'';
+  document.getElementById('w-abstract').value=a.abstract||'';
+  document.getElementById('w-intro').value=a.intro||'';
+  document.getElementById('w-method').value=a.method||'';
+  document.getElementById('w-results').value=a.results||'';
+  document.getElementById('w-conclusions').value=a.conclusions||'';
+  document.getElementById('w-refs').value=a.refs||'';
+  document.getElementById('w-cat').value=a.cat||'caso de éxito';
+  document.getElementById('w-visibility').value=a.visibility||'featured';
+  writeKeywords=a.keywords||[];
+  renderKeywordTags();
+  openModal('write-modal');
+};
+
+window.saveArticle=async(status='published')=>{
+  const title=document.getElementById('w-title').value.trim();
+  const abstract=document.getElementById('w-abstract').value.trim();
+  const intro=document.getElementById('w-intro').value.trim();
+  const method=document.getElementById('w-method').value.trim();
+  if(!title){toast('El título es obligatorio');return;}
+  if(!abstract){toast('El resumen es obligatorio');return;}
+  if(!intro){toast('La introducción es obligatoria');return;}
+  if(!method){toast('La metodología es obligatoria');return;}
+  const data={title,abstract,intro,method,results:document.getElementById('w-results').value.trim(),conclusions:document.getElementById('w-conclusions').value.trim(),refs:document.getElementById('w-refs').value.trim(),cat:document.getElementById('w-cat').value,visibility:document.getElementById('w-visibility').value,keywords:writeKeywords,status,authorId:currentUser.uid,authorName:currentUser.displayName||currentUser.email.split('@')[0],updatedAt:serverTimestamp()};
+  const editId=document.getElementById('write-id').value;
+  try{
+    if(editId){await updateDoc(doc(db,'articles',editId),data);toast('Artículo actualizado');}
+    else{data.createdAt=serverTimestamp();await addDoc(collection(db,'articles'),data);toast(status==='draft'?'Borrador guardado':'Artículo publicado');addActivity(`<strong>Nuevo artículo</strong> — "${title}"`);}
+    closeModal('write-modal');showTab('blog');
+  }catch(e){toast('Error: '+e.message);}
+};
+
+window.deleteArticle=async(id)=>{
+  if(!confirm('¿Eliminar este artículo?'))return;
+  await deleteDoc(doc(db,'articles',id));closeArticle();toast('Artículo eliminado');
+};
+
+window.addKeyword=(e)=>{
+  if(e.key!=='Enter')return;e.preventDefault();
+  const val=document.getElementById('w-kw-input').value.trim().toLowerCase();
+  if(!val||writeKeywords.includes(val)||writeKeywords.length>=6)return;
+  writeKeywords.push(val);document.getElementById('w-kw-input').value='';renderKeywordTags();
+};
+
+function renderKeywordTags(){
+  const el=document.getElementById('keyword-tags');if(!el)return;
+  el.innerHTML=writeKeywords.map((k,i)=>`<div class="keyword-tag">${k}<button onclick="removeKeyword(${i})">×</button></div>`).join('');
+}
+window.removeKeyword=(i)=>{writeKeywords.splice(i,1);renderKeywordTags();};
+window.updateCharCount=(inputId,countId,max)=>{
+  const el=document.getElementById(inputId),count=document.getElementById(countId);
+  if(!el||!count)return;
+  const words=el.value.trim().split(/\s+/).filter(Boolean).length;
+  count.textContent=words+' / '+max+' palabras';
+  count.style.color=words>max?'var(--red)':'var(--muted2)';
+};
+
 
 /* ── SW ── */
 if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
