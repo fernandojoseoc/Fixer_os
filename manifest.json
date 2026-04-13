@@ -1,0 +1,16 @@
+{
+  "name": "Fixer OS",
+  "short_name": "Fixer OS",
+  "description": "Sistema de inteligencia operativa para Fixers de élite",
+  "start_url": "/Fixer_os/",
+  "scope": "/Fixer_os/",
+  "display": "standalone",
+  "background_color": "#0f1f3d",
+  "theme_color": "#0f1f3d",
+  "orientation": "any",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "categories": ["productivity", "business"],
+  "lang": "es"
+}
