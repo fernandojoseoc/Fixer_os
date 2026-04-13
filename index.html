@@ -710,7 +710,7 @@ body.dark{--bg:#0f1f3d;--bg2:#1a2d4a;--bg3:#243656;--bg4:#2d4268;--border:rgba(1
       <div class="search-row">
         <input class="search-input" id="contact-search" placeholder="Buscar por nombre, ciudad, especialidad..." oninput="renderContacts()">
         <button class="btn btn-primary btn-sm" onclick="openContactModal()">+ Añadir</button>
-        <button class="btn btn-sm" onclick="exportContacts()" title="Exportar a Excel">📥 Exportar</button>
+        <button class="btn btn-sm" onclick="exportContacts()" title="Exportar a Excel">Exportar</button>
       </div>
       <div class="tag-row" id="contact-tags"></div>
       <div class="contact-list" id="contact-list-main"></div>
@@ -760,7 +760,7 @@ body.dark{--bg:#0f1f3d;--bg2:#1a2d4a;--bg3:#243656;--bg4:#2d4268;--border:rgba(1
     <div id="tab-ia" class="tab">
       <div class="ai-wrap">
         <div class="ai-header">
-          <div class="ai-header-icon">✦</div>
+          <div class="ai-header-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg></div>
           <div class="ai-header-info">
             <div class="ai-header-name">Fixer AI</div>
             <div class="ai-header-sub">Asistente estratégico con contexto de tu red</div>
@@ -773,7 +773,7 @@ body.dark{--bg:#0f1f3d;--bg2:#1a2d4a;--bg3:#243656;--bg4:#2d4268;--border:rgba(1
         <div class="ai-quick-btns" id="ai-quick-btns"></div>
         <div class="ai-messages" id="ai-messages">
           <div class="ai-empty" id="ai-empty">
-            <div class="ai-empty-icon">✦</div>
+            <div class="ai-empty-icon" style="font-size:36px;color:var(--cyan)"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg></div>
             <div class="ai-empty-title">Fixer AI</div>
             <div class="ai-empty-sub">Cuéntame un problema, un objetivo o una situación. Analizaré tu red y te daré una estrategia concreta.</div>
           </div>
@@ -790,7 +790,7 @@ body.dark{--bg:#0f1f3d;--bg2:#1a2d4a;--bg3:#243656;--bg4:#2d4268;--border:rgba(1
     <!-- BLOG -->
     <div id="tab-blog" class="tab">
       <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center">
-        <button class="btn btn-primary btn-sm" onclick="openWriteModal()">✍️ Escribir artículo</button>
+        <button class="btn btn-primary btn-sm" onclick="openWriteModal()">Escribir artículo</button>
         <div style="display:flex;gap:6px;flex-wrap:wrap" id="blog-filter-tags"></div>
       </div>
       <div class="blog-grid" id="blog-grid"></div>
@@ -991,11 +991,11 @@ body.dark{--bg:#0f1f3d;--bg2:#1a2d4a;--bg3:#243656;--bg4:#2d4268;--border:rgba(1
       </div>
     </div>
     <div class="drawer-actions">
-      <button class="btn btn-sm" id="d-linkedin-btn" onclick="openLinkedIn()" style="display:none">💼 LinkedIn</button>
-      <button class="btn btn-sm" id="d-call-btn" onclick="callContact()">📞 Llamar</button>
-      <button class="btn btn-sm" onclick="shareContact()">🔗 Compartir</button>
-      <button class="btn btn-sm" onclick="editContact()">✏️ Editar</button>
-      <button class="btn btn-sm btn-danger" onclick="openConfirm()">🗑 Eliminar</button>
+      <button class="btn btn-sm" id="d-linkedin-btn" onclick="openLinkedIn()" style="display:none">LinkedIn</button>
+      <button class="btn btn-sm" id="d-call-btn" onclick="callContact()">Llamar</button>
+      <button class="btn btn-sm" onclick="shareContact()">Compartir</button>
+      <button class="btn btn-sm" onclick="editContact()">Editar</button>
+      <button class="btn btn-sm btn-danger" onclick="openConfirm()">Eliminar</button>
     </div>
   </div>
 </div>
@@ -1100,9 +1100,9 @@ body.dark{--bg:#0f1f3d;--bg2:#1a2d4a;--bg3:#243656;--bg4:#2d4268;--border:rgba(1
     <div class="field-row">
       <div class="field"><label>Prioridad</label>
         <select id="t-priority">
-          <option value="high">🔴 Alta</option>
-          <option value="med" selected>🟡 Media</option>
-          <option value="low">🟢 Baja</option>
+          <option value="high">Alta</option>
+          <option value="med" selected>Media</option>
+          <option value="low">Baja</option>
         </select>
       </div>
       <div class="field"><label>Fecha límite</label><input id="t-due" type="date"></div>
@@ -1144,8 +1144,8 @@ body.dark{--bg:#0f1f3d;--bg2:#1a2d4a;--bg3:#243656;--bg4:#2d4268;--border:rgba(1
       </div>
       <div class="field"><label>Visibilidad</label>
         <select id="w-visibility">
-          <option value="featured">⭐ Destacado (visible sin login)</option>
-          <option value="members">🔒 Solo miembros</option>
+          <option value="featured">Destacado — visible sin login</option>
+          <option value="members">Solo miembros</option>
         </select>
       </div>
     </div>
@@ -1427,7 +1427,7 @@ function renderDashboard() {
 
   document.getElementById('dash-stats').innerHTML=`
     <div class="stat"><div class="stat-label">Resueltos</div><div class="stat-val">${done}</div><div class="stat-sub up">↑ acumulado</div></div>
-    <div class="stat"><div class="stat-label">Tiempo prom.</div><div class="stat-val">${avgH?avgH.toFixed(1)+'h':'—'}</div><div class="stat-sub ${avgH&&avgH<3?'up':'warn'}">${avgH&&avgH<3?'↓ mejorando':'resolución'}</div></div>
+    <div class="stat"><div class="stat-label">Tiempo prom.</div><div class="stat-val">${avgH?avgH.toFixed(1)+'h':'—'}</div><div class="stat-sub ${avgH&&avgH<3?'up':'warn'}">${avgH&&avgH<3?'mejorando':'resolución'}</div></div>
     <div class="stat"><div class="stat-label">Red</div><div class="stat-val">${contacts.length}</div><div class="stat-sub">contactos</div></div>
     <div class="stat"><div class="stat-label">Tasa éxito</div><div class="stat-val">${rate}%</div><div class="stat-sub ${rate>=80?'up':'warn'}">${rate>=80?'Meta ✓':'Mejorar'}</div></div>`;
 
@@ -1510,7 +1510,7 @@ function renderContacts(){
       <div class="avatar ${avClass(c.id)}">${initials(c.name)}</div>
       <div class="contact-info">
         <div class="contact-name">${c.name}${overdue?` <span class="reminder-badge">⏰ ${days}d</span>`:almostDue?` <span class="reminder-badge warn">⚡ pronto</span>`:''}</div>
-        <div class="contact-sub">${[c.role,c.company].filter(Boolean).join(' · ')}${c.linkedin?' · 💼':''}</div>
+        <div class="contact-sub">${[c.role,c.company].filter(Boolean).join(' · ')}${c.linkedin?' · LinkedIn':''}</div>
       </div>
       <div class="contact-right">
         <div class="stars-sm">${'★'.repeat(c.infl)}${'☆'.repeat(5-c.infl)}</div>
@@ -1883,7 +1883,7 @@ function renderModules(){
   ];
   document.getElementById('module-grid').innerHTML=mods.map(m=>`
     <div class="module" onclick="window.open('https://claude.ai/new?q='+encodeURIComponent('${m.p}'),'_blank')">
-      <div class="module-icon">${m.i}</div>
+      <div class="module-icon" style="font-family:var(--mono);font-size:.72em;font-weight:600;color:var(--blue);letter-spacing:.05em;margin-bottom:.5rem">${m.i}</div>
       <div class="module-title">${m.t}</div>
       <div class="module-desc">${m.d}</div>
     </div>`).join('');
@@ -2039,8 +2039,8 @@ window.showTab=id=>{_origShowTab(id);if(id==='ajustes')renderFontOptions();if(id
 
 /* ════ BLOG ════ */
 let articles=[];let currentArticleId=null;let writeKeywords=[];let blogFilterCat='all';let unsubArticles=null;
-const BLOG_CATS=[{id:'all',label:'Todos',icon:''},{id:'caso de éxito',label:'Caso de éxito',icon:'🏗️'},{id:'análisis',label:'Análisis',icon:'📊'},{id:'metodología',label:'Metodología',icon:'⚙️'},{id:'tendencia',label:'Tendencia',icon:'🌐'},{id:'opinión',label:'Opinión',icon:'💡'},{id:'guía',label:'Guía práctica',icon:'🎓'}];
-const CAT_ICONS={'caso de éxito':'🏗️','análisis':'📊','metodología':'⚙️','tendencia':'🌐','opinión':'💡','guía':'🎓'};
+const BLOG_CATS=[{id:'all',label:'Todos',icon:''},{id:'caso de éxito',label:'Caso de éxito',icon:''},{id:'análisis',label:'Análisis',icon:''},{id:'metodología',label:'Metodología',icon:''},{id:'tendencia',label:'Tendencia',icon:''},{id:'opinión',label:'Opinión',icon:''},{id:'guía',label:'Guía práctica',icon:''}];
+const CAT_ICONS={'caso de éxito':'C','análisis':'A','metodología':'M','tendencia':'T','opinión':'O','guía':'G'};
 
 function subscribeToBlog(){
   if(unsubArticles)unsubArticles();
@@ -2075,7 +2075,7 @@ function renderBlog(){
       <div class="blog-card-body">
         <div class="blog-card-meta">
           <span class="blog-cat cat-${catSlug}">${CAT_ICONS[a.cat]||''} ${a.cat||'—'}</span>
-          ${a.visibility==='featured'?'<span class="blog-featured">⭐ Destacado</span>':''}
+          ${a.visibility==='featured'?'<span class="blog-featured">Destacado</span>':''}
           ${isDraft?'<span style="font-size:10px;color:var(--muted2);font-family:var(--mono)">Borrador</span>':''}
           <span class="blog-read-time">⏱ ${rt} min</span>
         </div>
@@ -2086,7 +2086,7 @@ function renderBlog(){
             <div class="blog-author-av">${(a.authorName||'?').split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase()}</div>
             <div><div class="blog-author-name">${a.authorName||'Autor'}</div><div class="blog-author-date">${a.createdAt?new Date(a.createdAt.seconds*1000).toLocaleDateString('es',{day:'2-digit',month:'short',year:'numeric'}):''}</div></div>
           </div>
-          <div>${isLocked?'<span class="blog-locked">🔒 Miembros</span>':'<span style="font-size:10px;color:var(--muted2)">👁 Leer</span>'}</div>
+          <div>${isLocked?'<span class="blog-locked">Miembros</span>':'<span style="font-size:10px;color:var(--muted2)">👁 Leer</span>'}</div>
         </div>
       </div>
     </div>`;
@@ -2104,7 +2104,7 @@ window.openArticle=(id)=>{
   const body=document.getElementById('article-body');
   body.innerHTML=`
     <div class="article-header">
-      <div class="article-cats"><span class="blog-cat cat-${catSlug}">${CAT_ICONS[a.cat]||''} ${a.cat}</span>${a.visibility==='featured'?'<span class="blog-featured">⭐ Destacado</span>':''}</div>
+      <div class="article-cats"><span class="blog-cat cat-${catSlug}">${CAT_ICONS[a.cat]||''} ${a.cat}</span>${a.visibility==='featured'?'<span class="blog-featured">Destacado</span>':''}</div>
       <div class="article-title">${a.title}</div>
       <div class="article-byline">
         <div class="article-byline-av">${(a.authorName||'?').split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase()}</div>
@@ -2243,10 +2243,10 @@ function renderTaskFilters() {
   const el = document.getElementById('task-filters'); if(!el) return;
   const filters = [
     {id:'all', label:'Todas'},
-    {id:'high', label:'🔴 Alta'},
-    {id:'med', label:'🟡 Media'},
-    {id:'low', label:'🟢 Baja'},
-    {id:'overdue', label:'⚠️ Vencidas'},
+    {id:'high', label:'Alta'},
+    {id:'med', label:'Media'},
+    {id:'low', label:'Baja'},
+    {id:'overdue', label:'Vencidas'},
   ];
   el.innerHTML = filters.map(f => `<span class="tag ${taskFilter===f.id?'active':''}" onclick="setTaskFilter('${f.id}')">${f.label}</span>`).join('');
 }
@@ -2389,11 +2389,11 @@ window.saveTask = async () => {
   try {
     if(editId) {
       await updateDoc(doc(db,'users',currentUser.uid,'tasks',editId), data);
-      toast('✅ Tarea actualizada');
+      toast('Tarea actualizada');
     } else {
       data.createdAt = serverTimestamp();
       await addDoc(collection(db,'users',currentUser.uid,'tasks'), data);
-      toast('✅ Tarea creada');
+      toast('Tarea creada');
       addActivity(`<strong>Nueva tarea</strong> — "${title}"`);
     }
     closeModal('task-modal');
@@ -2403,12 +2403,12 @@ window.saveTask = async () => {
 window.toggleTask = async (id) => {
   const t = tasks.find(x=>x.id===id); if(!t) return;
   await updateDoc(doc(db,'users',currentUser.uid,'tasks',id), {done:!t.done, updatedAt:serverTimestamp()});
-  if(!t.done) toast('✅ Tarea completada');
+  if(!t.done) toast('Tarea completada');
 };
 
 window.deleteTask = async (id) => {
   await deleteDoc(doc(db,'users',currentUser.uid,'tasks',id));
-  toast('🗑 Tarea eliminada');
+  toast('Tarea eliminada');
 };
 
 
@@ -2417,11 +2417,11 @@ let aiHistory = [];
 let aiThinking = false;
 
 const AI_QUICK = [
-  {label:'🚨 Resolver un problema', prompt:'Tengo un problema urgente que necesito resolver. ¿Cómo me ayudas a analizarlo y activar mi red?'},
-  {label:'👤 ¿A quién llamar?', prompt:'Necesito resolver una situación específica. Analiza mis contactos y dime a quién debería contactar primero y por qué.'},
-  {label:'🤝 Preparar negociación', prompt:'Tengo una negociación importante próximamente. Ayúdame a prepararme con una estrategia concreta.'},
-  {label:'🎯 Activar mi red', prompt:'Quiero lograr un objetivo específico. ¿Cómo puedo activar estratégicamente mi red de contactos para lograrlo?'},
-  {label:'📋 Revisar mis tareas', prompt:'Revisa mis tareas pendientes y ayúdame a priorizar qué debo hacer primero hoy.'},
+  {label:'Resolver problema', prompt:'Tengo un problema urgente que necesito resolver. ¿Cómo me ayudas a analizarlo y activar mi red?'},
+  {label:'¿A quién llamar?', prompt:'Necesito resolver una situación específica. Analiza mis contactos y dime a quién debería contactar primero y por qué.'},
+  {label:'Preparar negociación', prompt:'Tengo una negociación importante próximamente. Ayúdame a prepararme con una estrategia concreta.'},
+  {label:'Activar mi red', prompt:'Quiero lograr un objetivo específico. ¿Cómo puedo activar estratégicamente mi red de contactos para lograrlo?'},
+  {label:'Priorizar tareas', prompt:'Revisa mis tareas pendientes y ayúdame a priorizar qué debo hacer primero hoy.'},
 ];
 
 function buildAIContext() {
@@ -2493,7 +2493,7 @@ function aiAddMessage(role, text) {
 
   const initials = role === 'user'
     ? (currentUser?.displayName||'Yo').split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase()
-    : '✦';
+    : 'AI';
 
   const div = document.createElement('div');
   div.className = `ai-msg ${role}`;
