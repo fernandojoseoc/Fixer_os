@@ -554,6 +554,86 @@ body.dark{
 .ai-empty-title{font-size:.93em;font-weight:600;color:var(--navy);}
 .ai-empty-sub{font-size:.78em;color:var(--muted);line-height:1.5;max-width:280px;}
 
+/* PERFIL PÚBLICO */
+.perfil-wrap{max-width:800px;margin:0 auto;}
+.perfil-hero{background:linear-gradient(135deg,var(--navy2) 0%,var(--navy3) 100%);border-radius:var(--r2);padding:32px 28px;margin-bottom:1.25rem;position:relative;overflow:hidden;box-shadow:var(--shadow-lg);}
+.perfil-hero::after{content:'';position:absolute;top:-30%;right:-8%;width:260px;height:260px;background:radial-gradient(circle,var(--cyan-glow) 0%,transparent 65%);pointer-events:none;}
+.perfil-hero-inner{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+.perfil-avatar{width:80px;height:80px;border-radius:50%;background:var(--cyan);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:1.8em;font-weight:800;color:var(--navy2);flex-shrink:0;border:3px solid rgba(255,255,255,.15);box-shadow:0 0 20px var(--cyan-glow);}
+.perfil-info{flex:1;}
+.perfil-name{font-family:var(--display);font-size:1.6em;font-weight:800;color:#ffffff;margin-bottom:4px;letter-spacing:-.01em;}
+.perfil-role{font-size:.93em;color:rgba(255,255,255,.65);margin-bottom:10px;}
+.perfil-badges{display:flex;gap:6px;flex-wrap:wrap;}
+.perfil-badge{padding:3px 10px;border-radius:99px;font-size:.72em;font-family:var(--mono);background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.15);}
+.perfil-badge.avail{background:rgba(16,185,129,.2);color:#6ee7b7;border-color:rgba(16,185,129,.3);}
+.perfil-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px;}
+.perfil-stat{text-align:center;padding:12px;background:rgba(255,255,255,.07);border-radius:var(--r);border:1px solid rgba(255,255,255,.1);}
+.perfil-stat-val{font-family:var(--display);font-size:1.5em;font-weight:800;color:var(--cyan);}
+.perfil-stat-label{font-size:.68em;color:rgba(255,255,255,.5);font-family:var(--mono);letter-spacing:.05em;text-transform:uppercase;margin-top:2px;}
+
+.perfil-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:20px 22px;margin-bottom:1rem;box-shadow:var(--shadow-sm);}
+.perfil-section-title{font-family:var(--display);font-size:.78em;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);margin-bottom:14px;display:flex;align-items:center;gap:8px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.perfil-section-title::before{content:'';width:3px;height:14px;background:linear-gradient(var(--cyan),var(--blue));border-radius:99px;}
+
+.perfil-about{font-size:.93em;color:var(--muted);line-height:1.8;}
+.perfil-about strong{color:var(--text);}
+
+.perfil-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;}
+.perfil-tag{padding:5px 12px;border-radius:99px;font-size:.72em;font-family:var(--mono);background:var(--bg3);border:1px solid var(--border2);color:var(--muted);font-weight:500;}
+
+.perfil-services{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.perfil-service{padding:14px 16px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);transition:var(--transition);}
+.perfil-service:hover{border-color:var(--cyan);background:var(--bg2);}
+.perfil-service-title{font-size:.87em;font-weight:600;color:var(--text);margin-bottom:4px;}
+.perfil-service-desc{font-size:.75em;color:var(--muted);line-height:1.5;}
+
+.perfil-projects{display:flex;flex-direction:column;gap:10px;}
+.perfil-project{padding:14px 16px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);transition:var(--transition);}
+.perfil-project:hover{border-color:var(--blue);box-shadow:var(--shadow-sm);}
+.perfil-project-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:6px;}
+.perfil-project-cat{font-size:.68em;font-family:var(--mono);color:var(--blue);text-transform:uppercase;letter-spacing:.06em;font-weight:600;}
+.perfil-project-year{font-size:.68em;font-family:var(--mono);color:var(--muted2);}
+.perfil-project-title{font-size:.93em;font-weight:600;color:var(--text);margin-bottom:5px;line-height:1.3;}
+.perfil-project-desc{font-size:.78em;color:var(--muted);line-height:1.5;margin-bottom:8px;}
+.perfil-project-results{display:flex;gap:5px;flex-wrap:wrap;}
+.perfil-result-badge{padding:2px 8px;border-radius:99px;font-size:.67em;font-family:var(--mono);font-weight:600;background:rgba(0,212,245,.1);color:var(--blue);border:1px solid rgba(0,212,245,.2);}
+.perfil-tech{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px;}
+.perfil-tech span{padding:2px 7px;border-radius:4px;font-size:.65em;font-family:var(--mono);background:var(--bg4);color:var(--muted);}
+
+.perfil-timeline{display:flex;flex-direction:column;gap:0;}
+.perfil-tl-item{display:flex;gap:14px;padding-bottom:20px;position:relative;}
+.perfil-tl-item:last-child{padding-bottom:0;}
+.perfil-tl-item:not(:last-child)::after{content:'';position:absolute;left:11px;top:24px;bottom:0;width:1px;background:var(--border2);}
+.perfil-tl-dot{width:24px;height:24px;border-radius:50%;background:var(--blue);border:3px solid var(--bg2);flex-shrink:0;margin-top:2px;box-shadow:0 0 0 2px var(--border2);}
+.perfil-tl-content{flex:1;}
+.perfil-tl-date{font-size:.68em;font-family:var(--mono);color:var(--muted2);margin-bottom:3px;letter-spacing:.04em;}
+.perfil-tl-role{font-size:.93em;font-weight:600;color:var(--text);}
+.perfil-tl-company{font-size:.8em;color:var(--blue);margin-bottom:5px;}
+.perfil-tl-desc{font-size:.78em;color:var(--muted);line-height:1.5;}
+.perfil-tl-tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px;}
+.perfil-tl-tag{padding:2px 8px;border-radius:99px;font-size:.65em;font-family:var(--mono);background:var(--bg3);border:1px solid var(--border);color:var(--muted);}
+
+.perfil-social-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.perfil-social-card{padding:14px 16px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);text-align:center;}
+.perfil-social-impact{font-family:var(--display);font-size:1.3em;font-weight:800;color:var(--cyan);margin-bottom:2px;}
+.perfil-social-title{font-size:.8em;font-weight:600;color:var(--text);margin-bottom:3px;}
+.perfil-social-desc{font-size:.72em;color:var(--muted);line-height:1.4;}
+
+.perfil-contact-row{display:flex;gap:10px;flex-wrap:wrap;}
+.perfil-contact-btn{flex:1;min-width:120px;padding:11px 14px;border-radius:var(--r);font-family:var(--sans);font-size:.84em;font-weight:500;text-align:center;cursor:pointer;transition:var(--transition);text-decoration:none;display:flex;align-items:center;justify-content:center;gap:8px;}
+.perfil-contact-btn.primary{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;border:none;box-shadow:0 2px 8px rgba(2,132,199,.25);}
+.perfil-contact-btn.primary:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(14,165,233,.35);}
+.perfil-contact-btn.secondary{background:var(--bg3);color:var(--text);border:1.5px solid var(--border2);}
+.perfil-contact-btn.secondary:hover{border-color:var(--cyan);background:var(--bg2);}
+
+@media(max-width:768px){
+  .perfil-services{grid-template-columns:1fr;}
+  .perfil-social-grid{grid-template-columns:1fr;}
+  .perfil-stats{grid-template-columns:repeat(3,1fr);}
+  .perfil-hero-inner{gap:16px;}
+  .perfil-name{font-size:1.3em;}
+}
+
 /* EMPTY */
 .empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;}
 .empty-icon{font-size:36px;margin-bottom:10px;}
@@ -673,6 +753,7 @@ body.dark{
     <button class="dnav-tab" onclick="showTab('roadmap')" data-tab="roadmap">Roadmap</button>
     <button class="dnav-tab" onclick="showTab('modulos')" data-tab="modulos">Módulos</button>
     <button class="dnav-tab" onclick="showTab('tareas')" data-tab="tareas">Tareas</button>
+    <button class="dnav-tab" onclick="showTab('perfil')" data-tab="perfil">Perfil</button>
     <button class="dnav-tab" onclick="showTab('ia')" data-tab="ia">✦ Fixer AI</button>
     <button class="dnav-tab" onclick="showTab('blog')" data-tab="blog">Blog</button>
     <button class="dnav-tab" onclick="showTab('ajustes')" data-tab="ajustes">Ajustes</button>
@@ -778,6 +859,241 @@ body.dark{
       </div>
       <div id="task-list-pending"></div>
       <div id="task-list-done"></div>
+    </div>
+
+    <!-- PERFIL PÚBLICO -->
+    <div id="tab-perfil" class="tab">
+      <div class="perfil-wrap">
+
+        <!-- HERO -->
+        <div class="perfil-hero">
+          <div class="perfil-hero-inner">
+            <div class="perfil-avatar">FO</div>
+            <div class="perfil-info">
+              <div class="perfil-name">Fernando Ospino</div>
+              <div class="perfil-role">Ingeniero Industrial · Jefe de Planeación · Consultor en IA & Manufactura</div>
+              <div class="perfil-badges">
+                <span class="perfil-badge avail">Disponible para proyectos</span>
+                <span class="perfil-badge">Barranquilla, Colombia</span>
+                <span class="perfil-badge">Remoto global</span>
+              </div>
+            </div>
+          </div>
+          <div class="perfil-stats">
+            <div class="perfil-stat"><div class="perfil-stat-val">+8</div><div class="perfil-stat-label">Años exp.</div></div>
+            <div class="perfil-stat"><div class="perfil-stat-val">+20</div><div class="perfil-stat-label">Proyectos</div></div>
+            <div class="perfil-stat"><div class="perfil-stat-val">35%</div><div class="perfil-stat-label">Reducción costos</div></div>
+          </div>
+        </div>
+
+        <!-- SOBRE MÍ -->
+        <div class="perfil-section">
+          <div class="perfil-section-title">Sobre mí</div>
+          <div class="perfil-about">
+            Soy <strong>Ingeniero Industrial</strong> especializado en la implementación de <strong>Inteligencia Artificial para la planeación y optimización de producción textil</strong>. Actualmente me desempeño como <strong>Jefe de Planeación de Producción, Diseño y Desarrollo</strong> en Classic Jeans Shops S.A.S. en Barranquilla, y simultáneamente como consultor de gestión en un hospital local.<br><br>
+            Mi enfoque combina metodologías de ingeniería industrial — Lean, Six Sigma, Supply Chain — con tecnologías de vanguardia como Machine Learning y análisis de datos, para transformar operaciones manufactureras complejas en sistemas inteligentes y predecibles.<br><br>
+            Creo firmemente en la <strong>tecnología como herramienta de equidad</strong>: he formado a más de 150 personas en competencias digitales y acompañado a más de 25 PYMES textiles en su digitalización.
+          </div>
+          <div class="perfil-tags">
+            <span class="perfil-tag">Machine Learning</span>
+            <span class="perfil-tag">Lean Manufacturing</span>
+            <span class="perfil-tag">Six Sigma Green Belt</span>
+            <span class="perfil-tag">Python</span>
+            <span class="perfil-tag">Industria 4.0</span>
+            <span class="perfil-tag">Supply Chain</span>
+            <span class="perfil-tag">Power BI</span>
+            <span class="perfil-tag">SAP PP</span>
+            <span class="perfil-tag">IoT Industrial</span>
+            <span class="perfil-tag">Forecasting</span>
+          </div>
+        </div>
+
+        <!-- SERVICIOS -->
+        <div class="perfil-section">
+          <div class="perfil-section-title">Servicios</div>
+          <div class="perfil-services">
+            <div class="perfil-service">
+              <div class="perfil-service-title">Planeación de Producción con IA</div>
+              <div class="perfil-service-desc">Modelos ML para forecasting de demanda, optimización de secuenciación y balanceo inteligente de líneas.</div>
+            </div>
+            <div class="perfil-service">
+              <div class="perfil-service-title">Optimización de Procesos Lean</div>
+              <div class="perfil-service-desc">VSM, análisis de cuellos de botella, 5S, Kaizen y Six Sigma para eliminar desperdicios.</div>
+            </div>
+            <div class="perfil-service">
+              <div class="perfil-service-title">Gestión de Supply Chain</div>
+              <div class="perfil-service-desc">Cadenas de suministro resilientes con análisis ABC/XYZ, modelos de reabastecimiento y KPIs logísticos.</div>
+            </div>
+            <div class="perfil-service">
+              <div class="perfil-service-title">Analítica Industrial & BI</div>
+              <div class="perfil-service-desc">Dashboards interactivos en Power BI, automatización con Python, OEE, TEEP y MTTR.</div>
+            </div>
+            <div class="perfil-service">
+              <div class="perfil-service-title">Consultoría Industria 4.0</div>
+              <div class="perfil-service-desc">Diagnóstico de madurez digital, IoT industrial y roadmap de transformación para plantas manufactureras.</div>
+            </div>
+            <div class="perfil-service">
+              <div class="perfil-service-title">Formación & Capacitación</div>
+              <div class="perfil-service-desc">Talleres Lean in-company, cursos de Python para ingenieros y mentorías 1 a 1.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROYECTOS -->
+        <div class="perfil-section">
+          <div class="perfil-section-title">Proyectos destacados</div>
+          <div class="perfil-projects">
+            <div class="perfil-project">
+              <div class="perfil-project-header">
+                <span class="perfil-project-cat">IA + Manufactura Textil</span>
+                <span class="perfil-project-year">2024</span>
+              </div>
+              <div class="perfil-project-title">Sistema de Planeación Predictiva para Planta Textil</div>
+              <div class="perfil-project-desc">Motor de forecasting con Prophet + XGBoost para predecir demanda por referencia con horizonte de 8 semanas, integrado con ERP para generar órdenes automáticamente.</div>
+              <div class="perfil-project-results">
+                <span class="perfil-result-badge">-32% inventario WIP</span>
+                <span class="perfil-result-badge">+25% OTIF</span>
+                <span class="perfil-result-badge">Ahorro $180K/año</span>
+              </div>
+              <div class="perfil-tech"><span>Python</span><span>Prophet</span><span>XGBoost</span><span>FastAPI</span><span>Power BI</span></div>
+            </div>
+            <div class="perfil-project">
+              <div class="perfil-project-header">
+                <span class="perfil-project-cat">Optimización</span>
+                <span class="perfil-project-year">2023</span>
+              </div>
+              <div class="perfil-project-title">Balanceo Inteligente de Líneas de Confección</div>
+              <div class="perfil-project-desc">Algoritmo de optimización combinatoria para balanceo dinámico de líneas de costura, reduciendo tiempo improductivo entre órdenes.</div>
+              <div class="perfil-project-results">
+                <span class="perfil-result-badge">-45% tiempo setup</span>
+                <span class="perfil-result-badge">+18% eficiencia</span>
+              </div>
+              <div class="perfil-tech"><span>Python</span><span>OR-Tools</span><span>Excel VBA</span></div>
+            </div>
+            <div class="perfil-project">
+              <div class="perfil-project-header">
+                <span class="perfil-project-cat">Lean Six Sigma</span>
+                <span class="perfil-project-year">2022</span>
+              </div>
+              <div class="perfil-project-title">Proyecto DMAIC: Reducción de Defectos en Tejeduría</div>
+              <div class="perfil-project-desc">Metodología DMAIC completa para reducir defectos en tejido circular. Análisis de causa raíz con herramientas estadísticas avanzadas.</div>
+              <div class="perfil-project-results">
+                <span class="perfil-result-badge">-60% defectos</span>
+                <span class="perfil-result-badge">Nivel Sigma 3.8→4.5</span>
+              </div>
+              <div class="perfil-tech"><span>Minitab</span><span>SPC</span><span>VSM</span></div>
+            </div>
+            <div class="perfil-project">
+              <div class="perfil-project-header">
+                <span class="perfil-project-cat">Industria 4.0</span>
+                <span class="perfil-project-year">2024</span>
+              </div>
+              <div class="perfil-project-title">Monitoreo IoT de Máquinas Tejedoras</div>
+              <div class="perfil-project-desc">Implementación de sensores en telares para captura en tiempo real: RPM, temperatura, paros y OEE automático.</div>
+              <div class="perfil-project-results">
+                <span class="perfil-result-badge">OEE automatizado</span>
+                <span class="perfil-result-badge">-70% tiempo reporte</span>
+              </div>
+              <div class="perfil-tech"><span>IoT</span><span>MQTT</span><span>Node-RED</span><span>Grafana</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXPERIENCIA -->
+        <div class="perfil-section">
+          <div class="perfil-section-title">Trayectoria profesional</div>
+          <div class="perfil-timeline">
+            <div class="perfil-tl-item">
+              <div class="perfil-tl-dot"></div>
+              <div class="perfil-tl-content">
+                <div class="perfil-tl-date">2022 — Presente</div>
+                <div class="perfil-tl-role">Consultor Senior — IA & Operaciones</div>
+                <div class="perfil-tl-company">Independiente / Freelance</div>
+                <div class="perfil-tl-desc">Consultoría especializada en implementación de IA para industrias textiles y de confección. Diseño de sistemas de planeación predictiva y transformación digital.</div>
+                <div class="perfil-tl-tags"><span class="perfil-tl-tag">IA Aplicada</span><span class="perfil-tl-tag">Consultoría</span><span class="perfil-tl-tag">Textil</span></div>
+              </div>
+            </div>
+            <div class="perfil-tl-item">
+              <div class="perfil-tl-dot"></div>
+              <div class="perfil-tl-content">
+                <div class="perfil-tl-date">2019 — 2022</div>
+                <div class="perfil-tl-role">Jefe de Planeación y Control de Producción</div>
+                <div class="perfil-tl-company">Classic Jeans Shops S.A.S. — Barranquilla</div>
+                <div class="perfil-tl-desc">Lideré el área de planeación para planta con 400+ operarios. Implementé el primer sistema de forecasting automatizado reduciendo inventario en proceso en 32%.</div>
+                <div class="perfil-tl-tags"><span class="perfil-tl-tag">Planeación</span><span class="perfil-tl-tag">Liderazgo</span><span class="perfil-tl-tag">SAP</span></div>
+              </div>
+            </div>
+            <div class="perfil-tl-item">
+              <div class="perfil-tl-dot"></div>
+              <div class="perfil-tl-content">
+                <div class="perfil-tl-date">2017 — 2019</div>
+                <div class="perfil-tl-role">Ingeniero de Mejoramiento Continuo</div>
+                <div class="perfil-tl-company">Empresa de Confección — Colombia</div>
+                <div class="perfil-tl-desc">Proyectos Lean Six Sigma en líneas de confección. Certificación Green Belt. Reducción del 45% en tiempos de ciclo mediante proyectos kaizen.</div>
+                <div class="perfil-tl-tags"><span class="perfil-tl-tag">Lean</span><span class="perfil-tl-tag">Six Sigma</span><span class="perfil-tl-tag">Kaizen</span></div>
+              </div>
+            </div>
+            <div class="perfil-tl-item">
+              <div class="perfil-tl-dot"></div>
+              <div class="perfil-tl-content">
+                <div class="perfil-tl-date">2015 — 2017</div>
+                <div class="perfil-tl-role">Ingeniero de Producción</div>
+                <div class="perfil-tl-company">Planta Manufacturera — Colombia</div>
+                <div class="perfil-tl-desc">Gestión de líneas de producción, control de calidad y primeros proyectos de digitalización con Python.</div>
+                <div class="perfil-tl-tags"><span class="perfil-tl-tag">Producción</span><span class="perfil-tl-tag">Calidad</span><span class="perfil-tl-tag">Python</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMPACTO SOCIAL -->
+        <div class="perfil-section">
+          <div class="perfil-section-title">Impacto social</div>
+          <div class="perfil-social-grid">
+            <div class="perfil-social-card">
+              <div class="perfil-social-impact">+150</div>
+              <div class="perfil-social-title">Formación Técnica para Operarios</div>
+              <div class="perfil-social-desc">Competencias digitales para operarios textiles en zonas de baja inversión tecnológica.</div>
+            </div>
+            <div class="perfil-social-card">
+              <div class="perfil-social-impact">+25</div>
+              <div class="perfil-social-title">PYMES Textiles Digitalizadas</div>
+              <div class="perfil-social-desc">Acompañamiento gratuito a micro y pequeñas empresas textiles en gestión de producción.</div>
+            </div>
+            <div class="perfil-social-card">
+              <div class="perfil-social-impact">+60</div>
+              <div class="perfil-social-title">Mujeres en Industria 4.0</div>
+              <div class="perfil-social-desc">Talleres de Python y análisis de datos para mujeres trabajadoras de la industria textil.</div>
+            </div>
+            <div class="perfil-social-card">
+              <div class="perfil-social-impact">+30</div>
+              <div class="perfil-social-title">Estudiantes Mentoreados</div>
+              <div class="perfil-social-desc">Mentoría a estudiantes de ingeniería en proyectos de manufactura inteligente e IA.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTACTO -->
+        <div class="perfil-section">
+          <div class="perfil-section-title">Contacto</div>
+          <p style="font-size:.87em;color:var(--muted);margin-bottom:14px;line-height:1.6">Disponible para proyectos de consultoría, implementación de IA en manufactura y colaboraciones estratégicas. Sin compromisos, con resultados reales.</p>
+          <div class="perfil-contact-row">
+            <a href="https://linkedin.com/in/fernandoospino" target="_blank" class="perfil-contact-btn primary">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a>
+            <a href="mailto:fernando@fixeros.com" class="perfil-contact-btn secondary">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              Email
+            </a>
+            <button class="perfil-contact-btn secondary" onclick="showTab('ia')">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+              Fixer AI
+            </button>
+          </div>
+        </div>
+
+      </div>
     </div>
 
     <!-- FIXER AI -->
