@@ -256,7 +256,7 @@ body.dark .card-title{color:var(--cyan);}
 .act-text strong{color:var(--navy);font-weight:600;}
 
 /* MAP */
-#map-container{height:calc(100dvh - var(--nav-h) - 44px - var(--bnav-h) - var(--safe-b) - 28px);border-radius:var(--r2);overflow:hidden;border:1px solid var(--border);}
+#map-container{height:calc(100dvh - var(--nav-h) - 60px);border-radius:var(--r2);overflow:hidden;border:1px solid var(--border);}
 .leaflet-container{background:#e0f2fe;}
 .map-legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
 .map-legend-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);font-family:var(--mono);}
@@ -503,7 +503,7 @@ body.dark{
 .dash-task-due.overdue{color:var(--red);}
 
 /* AI CHAT */
-.ai-wrap{display:flex;flex-direction:column;height:calc(100dvh - var(--nav-h) - 44px - 28px);max-height:700px;}
+.ai-wrap{display:flex;flex-direction:column;height:calc(100dvh - var(--nav-h) - 60px);}
 @media(max-width:768px){.ai-wrap{height:calc(100dvh - var(--nav-h) - var(--bnav-h) - var(--safe-b) - 24px);}}
 .ai-header{background:var(--navy);border-radius:var(--r2);padding:14px 16px;margin-bottom:12px;display:flex;align-items:center;gap:12px;}
 .ai-header-icon{width:40px;height:40px;border-radius:50%;background:var(--cyan);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
@@ -629,6 +629,51 @@ body.dark{
   .perfil-name{font-size:1.3em;}
 }
 
+/* SIDEBAR */
+.app-layout{display:flex;height:100dvh;height:100vh;overflow:hidden;}
+.sidebar{width:64px;background:var(--navy);display:flex;flex-direction:column;align-items:center;padding:12px 0;gap:4px;flex-shrink:0;border-right:1px solid rgba(0,224,255,.08);z-index:50;}
+.sidebar-logo{width:36px;height:36px;background:var(--cyan);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:8px;box-shadow:0 0 12px var(--cyan-glow);}
+.sidebar-logo svg{width:20px;height:20px;fill:var(--navy);}
+.sidebar-divider{width:28px;height:1px;background:rgba(255,255,255,.08);margin:6px 0;}
+.sidebar-btn{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;background:none;transition:var(--transition);position:relative;}
+.sidebar-btn svg{width:18px;height:18px;stroke:rgba(255,255,255,.35);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:var(--transition);}
+.sidebar-btn:hover{background:rgba(255,255,255,.07);}
+.sidebar-btn:hover svg{stroke:rgba(255,255,255,.7);}
+.sidebar-btn.active{background:rgba(0,224,255,.15);}
+.sidebar-btn.active svg{stroke:var(--cyan);}
+.sidebar-btn.active::before{content:'';position:absolute;left:0;top:25%;bottom:25%;width:3px;background:var(--cyan);border-radius:0 3px 3px 0;}
+.sidebar-bottom{margin-top:auto;display:flex;flex-direction:column;align-items:center;gap:4px;}
+.sidebar-avatar{width:34px;height:34px;border-radius:50%;background:var(--cyan);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--navy);cursor:pointer;border:2px solid rgba(255,255,255,.1);}
+
+/* SIDEBAR MOBILE OVERLAY */
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;}
+.sidebar-overlay.open{display:block;}
+.sidebar-mobile{position:fixed;left:0;top:0;bottom:0;width:64px;background:var(--navy);display:flex;flex-direction:column;align-items:center;padding:12px 0;gap:4px;z-index:201;transform:translateX(-100%);transition:transform .25s cubic-bezier(.32,1,.5,1);border-right:1px solid rgba(0,224,255,.08);}
+.sidebar-mobile.open{transform:translateX(0);}
+
+/* MAIN AREA */
+.main-area{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0;}
+
+/* TOPBAR — white with cyan accent */
+.topbar{display:flex;background:var(--bg2);border-bottom:2px solid var(--cyan);height:var(--nav-h);align-items:center;justify-content:space-between;padding:0 20px;flex-shrink:0;box-shadow:var(--shadow-sm);}
+.topbar-brand{display:flex;align-items:center;gap:10px;}
+.topbar-title{font-family:var(--display);font-size:1.1em;font-weight:800;color:var(--navy2);letter-spacing:.02em;}
+.topbar-title span{color:var(--blue2);}
+.topbar-badge{padding:3px 10px;border-radius:99px;font-size:.68em;background:#f0f9ff;color:#0369a1;border:1px solid #bae6fd;font-family:var(--mono);font-weight:600;margin-left:4px;}
+.topbar-right{display:flex;align-items:center;gap:12px;}
+.sync-dot{width:7px;height:7px;border-radius:50%;background:rgba(0,0,0,.15);}
+.sync-dot.ok{background:#4ade80;}
+.sync-dot.syncing{background:#fbbf24;}
+.user-chip{display:flex;align-items:center;gap:8px;padding:5px 12px 5px 5px;background:var(--bg3);border:1px solid var(--border2);border-radius:99px;cursor:pointer;transition:var(--transition);}
+.user-chip:hover{border-color:var(--blue2);}
+.user-chip-avatar{width:28px;height:28px;border-radius:50%;background:var(--navy2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--cyan);font-family:var(--mono);}
+.user-chip span{font-size:12px;color:var(--text);font-weight:600;}
+.hamburger-btn{display:none;width:36px;height:36px;border-radius:8px;background:var(--navy);border:none;cursor:pointer;align-items:center;justify-content:center;}
+.hamburger-btn svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;}
+
+/* DESKTOP NAV — hidden (replaced by sidebar) */
+.desktop-nav{display:none !important;}
+
 /* EMPTY */
 .empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;}
 .empty-icon{font-size:36px;margin-bottom:10px;}
@@ -642,18 +687,11 @@ body.dark{
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* RESPONSIVE */
-@media(min-width:769px){
-  .bottom-nav{display:none;}
-  .desktop-nav{display:flex;}
-  .content{padding:20px 24px 12px;}
-  .stat-grid{grid-template-columns:repeat(4,1fr);}
-  .module-grid{grid-template-columns:repeat(3,1fr);}
-  #map-container{height:500px;}
-  .article-backdrop{border-radius:0;}
-  .card{margin-bottom:1rem;}
-}
+
 @media(max-width:768px){
-  .topbar{padding-top:calc(var(--safe-t) + 6px);height:calc(var(--nav-h) + var(--safe-t));padding-left:16px;padding-right:16px;}
+  .sidebar{display:none;}
+  .hamburger-btn{display:flex !important;}
+  .topbar{padding-top:calc(var(--safe-t) + 4px);height:calc(var(--nav-h) + var(--safe-t));padding-left:14px;padding-right:14px;}
   .content{padding:12px 12px calc(12px + var(--bnav-h) + var(--safe-b));}
   .field-row{grid-template-columns:1fr;}
   .stat-grid{grid-template-columns:repeat(2,1fr);}
@@ -667,7 +705,19 @@ body.dark{
   .article-title{font-size:1.3em;}
   .drawer-actions{gap:6px;}
   .drawer-actions .btn{font-size:.75em;padding:.5rem .5rem;}
-  .desktop-nav{display:none;}
+  .desktop-nav{display:none !important;}
+}
+@media(min-width:769px){
+  .hamburger-btn{display:none !important;}
+  .bottom-nav{display:none;}
+  .desktop-nav{display:none !important;}
+  .sidebar{display:flex;}
+  .content{padding:20px 24px 12px;}
+  .stat-grid{grid-template-columns:repeat(4,1fr);}
+  .module-grid{grid-template-columns:repeat(3,1fr);}
+  #map-container{height:500px;}
+  .article-backdrop{border-radius:0;}
+  .card{margin-bottom:1rem;}
 }
 
 </style>
@@ -724,17 +774,67 @@ body.dark{
 
 <!-- MAIN SHELL -->
 <div class="shell" id="shell">
+
+  <!-- SIDEBAR MOBILE OVERLAY -->
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+  <!-- SIDEBAR MOBILE -->
+  <div class="sidebar-mobile" id="sidebar-mobile">
+    <div class="sidebar-logo"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+    <div class="sidebar-divider"></div>
+    <button class="sidebar-btn active" onclick="showTab('dashboard');closeSidebar()" data-stab="dashboard"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></button>
+    <button class="sidebar-btn" onclick="showTab('contactos');closeSidebar()" data-stab="contactos"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button>
+    <button class="sidebar-btn" onclick="showTab('mapa');closeSidebar()" data-stab="mapa"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></button>
+    <button class="sidebar-btn" onclick="showTab('problemas');closeSidebar()" data-stab="problemas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r=".5" fill="currentColor" stroke="none"/></svg></button>
+    <button class="sidebar-btn" onclick="showTab('tareas');closeSidebar()" data-stab="tareas"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></button>
+    <button class="sidebar-btn" onclick="showTab('kpis');closeSidebar()" data-stab="kpis"><svg viewBox="0 0 24 24"><polyline points="3 17 8 12 13 15 21 7"/></svg></button>
+    <button class="sidebar-btn" onclick="showTab('ia');closeSidebar()" data-stab="ia"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg></button>
+    <button class="sidebar-btn" onclick="showTab('blog');closeSidebar()" data-stab="blog"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></button>
+    <div class="sidebar-bottom">
+      <button class="sidebar-btn" onclick="showTab('perfil');closeSidebar()" data-stab="perfil"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button>
+      <button class="sidebar-btn" onclick="showTab('ajustes');closeSidebar()" data-stab="ajustes"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
+    </div>
+  </div>
+
+  <div class="app-layout">
+  <!-- SIDEBAR DESKTOP -->
+  <div class="sidebar" id="sidebar-desktop">
+    <div class="sidebar-logo"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+    <div class="sidebar-divider"></div>
+    <button class="sidebar-btn active" onclick="showTab('dashboard')" data-stab="dashboard" title="Dashboard"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></button>
+    <button class="sidebar-btn" onclick="showTab('contactos')" data-stab="contactos" title="Contactos"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button>
+    <button class="sidebar-btn" onclick="showTab('mapa')" data-stab="mapa" title="Mapa de red"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></button>
+    <button class="sidebar-btn" onclick="showTab('problemas')" data-stab="problemas" title="Problemas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r=".5" fill="currentColor" stroke="none"/></svg></button>
+    <button class="sidebar-btn" onclick="showTab('tareas')" data-stab="tareas" title="Tareas"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></button>
+    <button class="sidebar-btn" onclick="showTab('kpis')" data-stab="kpis" title="KPIs"><svg viewBox="0 0 24 24"><polyline points="3 17 8 12 13 15 21 7"/></svg></button>
+    <button class="sidebar-btn" onclick="showTab('roadmap')" data-stab="roadmap" title="Roadmap"><svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg></button>
+    <button class="sidebar-btn" onclick="showTab('modulos')" data-stab="modulos" title="Módulos"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></button>
+    <button class="sidebar-btn" onclick="showTab('ia')" data-stab="ia" title="Fixer AI"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg></button>
+    <button class="sidebar-btn" onclick="showTab('blog')" data-stab="blog" title="Blog"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></button>
+    <div class="sidebar-bottom">
+      <button class="sidebar-btn" onclick="showTab('perfil')" data-stab="perfil" title="Mi Perfil"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button>
+      <button class="sidebar-btn" onclick="showTab('ajustes')" data-stab="ajustes" title="Ajustes"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-avatar" id="sidebar-avatar" onclick="doLogout()">FJ</div>
+    </div>
+  </div>
+
+  <!-- MAIN AREA -->
+  <div class="main-area">
   <!-- TOP BAR -->
   <div class="topbar">
     <div class="topbar-brand">
-      <div class="topbar-logo"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+      <button class="hamburger-btn" id="hamburger-btn" onclick="openSidebar()">
+        <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
       <span class="topbar-title">Fixer<span>OS</span></span>
+      <span class="topbar-badge">Tactical</span>
     </div>
     <div class="topbar-right">
       <div class="sync-dot" id="sync-dot"></div>
       <div class="user-chip" onclick="doLogout()">
+        <div class="user-chip-avatar" id="user-avatar-chip">FJ</div>
         <span id="user-name-chip">usuario</span>
-        <svg viewBox="0 0 16 16" stroke-width="1.5" stroke="currentColor" fill="none"><path d="M2 12c0-3 2-4 6-4s6 1 6 4M8 8a3 3 0 100-6 3 3 0 000 6z"/></svg>
       </div>
     </div>
   </div>
@@ -1258,6 +1358,8 @@ body.dark{
       <div class="version-info">Fixer OS · v2.0.0 · Firebase Edition</div>
     </div>
   </div>
+  </div><!-- /main-area -->
+  </div><!-- /app-layout -->
   <!-- BOTTOM NAV -->
   <div class="bottom-nav">
     <div class="bnav-inner">
@@ -1655,6 +1757,11 @@ onAuthStateChanged(auth, user => {
     document.getElementById('shell').style.display='flex';
     const name = user.displayName || user.email.split('@')[0];
     document.getElementById('user-name-chip').textContent = name.split(' ')[0];
+    const initials = name.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();
+    const avatarEl = document.getElementById('user-avatar-chip');
+    if(avatarEl) avatarEl.textContent = initials;
+    const sidebarAv = document.getElementById('sidebar-avatar');
+    if(sidebarAv) sidebarAv.textContent = initials;
     splash.classList.add('hide');
     setTimeout(()=>splash.style.display='none',500);
     subscribeToData();
@@ -2231,10 +2338,20 @@ function renderModules(){
 /* ── TAB NAV ── */
 window.showTab = (id) => {
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.dnav-tab,.bnav-tab').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('active');
-  document.querySelectorAll(`[data-tab="${id}"],[data-btab="${id}"]`).forEach(b=>b.classList.add('active'));
+  document.querySelectorAll('.dnav-tab,.bnav-tab,.sidebar-btn').forEach(b=>b.classList.remove('active'));
+  const tabEl = document.getElementById('tab-'+id);
+  if(tabEl) tabEl.classList.add('active');
+  document.querySelectorAll(`[data-tab="${id}"],[data-btab="${id}"],[data-stab="${id}"]`).forEach(b=>b.classList.add('active'));
   if(id==='mapa') renderMap();
+};
+
+window.openSidebar = () => {
+  document.getElementById('sidebar-overlay').classList.add('open');
+  document.getElementById('sidebar-mobile').classList.add('open');
+};
+window.closeSidebar = () => {
+  document.getElementById('sidebar-overlay').classList.remove('open');
+  document.getElementById('sidebar-mobile').classList.remove('open');
 };
 
 /* ── MODALS / DRAWERS ── */
