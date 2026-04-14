@@ -102,8 +102,9 @@
 
 /* BOTTOM NAV */
 .bottom-nav{background:var(--navy2);border-top:1px solid rgba(0,212,245,0.1);flex-shrink:0;padding-bottom:var(--safe-b);box-shadow:0 -4px 20px rgba(0,0,0,0.2);}
-.bnav-inner{display:flex;height:var(--bnav-h);}
-.bnav-tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:none;background:none;cursor:pointer;color:rgba(255,255,255,.35);padding:6px 4px;transition:var(--transition);position:relative;}
+.bnav-inner{display:flex;height:var(--bnav-h);overflow-x:auto;scrollbar-width:none;}
+.bnav-inner::-webkit-scrollbar{display:none;}
+.bnav-tab{flex:0 0 auto;min-width:64px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border:none;background:none;cursor:pointer;color:rgba(255,255,255,.35);padding:6px 4px;transition:var(--transition);position:relative;}
 .bnav-tab.active{color:#ffffff;}
 .bnav-tab.active::before{content:'';position:absolute;top:0;left:25%;right:25%;height:2px;background:var(--cyan);border-radius:0 0 4px 4px;box-shadow:0 0 8px var(--cyan-glow);}
 .bnav-tab:hover{color:rgba(255,255,255,.7);}
@@ -658,7 +659,7 @@ body.dark{
   .card{margin-bottom:1rem;}
 }
 @media(max-width:768px){
-  .topbar{padding-top:calc(var(--safe-t) + 8px);height:calc(var(--nav-h) + var(--safe-t));}
+  .topbar{padding-top:calc(var(--safe-t) + 4px);height:calc(var(--nav-h) + var(--safe-t));padding-left:14px;padding-right:14px;}
   .content{padding:12px 12px calc(12px + var(--bnav-h) + var(--safe-b));}
   .field-row{grid-template-columns:1fr;}
   .stat-grid{grid-template-columns:repeat(2,1fr);}
@@ -1082,7 +1083,7 @@ body.dark{
               <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
               LinkedIn
             </a>
-            <a href="mailto:fernando@fixeros.com" class="perfil-contact-btn secondary">
+            <a href="/cdn-cgi/l/email-protection#187e7d6a7679767c77587e71607d6a776b367b7775" class="perfil-contact-btn secondary">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
               Email
             </a>
@@ -1293,6 +1294,10 @@ body.dark{
       <button class="bnav-tab" onclick="showTab('ia')" data-btab="ia">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg>
         <span>IA</span>
+      </button>
+      <button class="bnav-tab" onclick="showTab('perfil')" data-btab="perfil">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        <span>Perfil</span>
       </button>
       <button class="bnav-tab" onclick="showTab('ajustes')" data-btab="ajustes">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
@@ -1529,7 +1534,7 @@ body.dark{
 
 <div class="toast" id="toast"></div>
 
-<script type="module">
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail, updateProfile } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getFirestore, collection, doc, addDoc, setDoc, updateDoc, deleteDoc, onSnapshot, query, orderBy, serverTimestamp, getDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
@@ -2971,12 +2976,4 @@ window.aiClearChat = () => {
     </div>`;
   const qb = document.getElementById('ai-quick-btns');
   if(qb) { qb.style.display = 'flex'; aiRenderQuickBtns(); }
-  aiSetStatus(false);
-};
-
-
-/* ── SW ── */
-if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
-</script>
-</body>
-</html>
+  aiSetStatus(f
