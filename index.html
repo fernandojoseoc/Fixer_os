@@ -736,6 +736,31 @@ body.dark{
 .preview-keywords{display:flex;gap:5px;flex-wrap:wrap;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);}
 .preview-kw{padding:3px 9px;border-radius:4px;font-size:.67em;font-family:var(--mono);background:var(--bg3);color:var(--muted);border:1px solid var(--border);}
 
+/* CONTACTS ENHANCED */
+.contact-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
+.contact-stat{background:var(--bg3);border-radius:var(--r);padding:10px 12px;text-align:center;border:1px solid var(--border);}
+.contact-stat-val{font-family:var(--display);font-size:1.4em;font-weight:800;color:var(--text);}
+.contact-stat-label{font-size:.67em;color:var(--muted2);font-family:var(--mono);text-transform:uppercase;letter-spacing:.05em;margin-top:2px;}
+.contact-stat.warn .contact-stat-val{color:var(--red);}
+.contact-stat.good .contact-stat-val{color:var(--green);}
+
+.contact-prof-tag{display:inline-flex;padding:2px 8px;border-radius:99px;font-size:.67em;font-family:var(--mono);font-weight:500;background:rgba(2,132,199,.1);color:#0369a1;border:1px solid rgba(2,132,199,.2);margin-top:3px;}
+
+.prof-suggest{position:absolute;top:100%;left:0;right:0;background:var(--bg2);border:1.5px solid var(--cyan);border-top:none;border-radius:0 0 var(--r) var(--r);z-index:100;max-height:160px;overflow-y:auto;box-shadow:var(--shadow-md);}
+.prof-suggest-item{padding:8px 12px;font-size:.87em;color:var(--text);cursor:pointer;transition:background .1s;}
+.prof-suggest-item:hover,.prof-suggest-item.active{background:var(--bg3);color:var(--blue);}
+.prof-input-wrap{position:relative;}
+
+.net-stale{background:var(--bg3);border-radius:var(--r);padding:10px 14px;margin-bottom:10px;}
+.net-stale-item{display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:0.5px solid var(--border);}
+.net-stale-item:last-child{border-bottom:none;}
+.net-stale-bar{flex:1;height:3px;background:var(--border2);border-radius:99px;overflow:hidden;margin-top:3px;}
+.net-stale-fill{height:100%;border-radius:99px;background:var(--red);}
+
+.prof-filter-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+.prof-filter-pill{padding:4px 11px;border-radius:99px;font-size:.72em;font-family:var(--mono);border:1.5px solid var(--border2);color:var(--muted);cursor:pointer;transition:var(--transition);white-space:nowrap;}
+.prof-filter-pill.active{background:var(--blue);color:#fff;border-color:var(--blue);}
+
 /* EMPTY */
 .empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;}
 .empty-icon{font-size:36px;margin-bottom:10px;}
@@ -2073,11 +2098,128 @@ function renderContactTags(){
 }
 window.setTag = s => { activeTag=activeTag===s?'':s; renderContactTags(); renderContacts(); };
 
+const PROF_SUGGESTIONS = [
+  'Abogado','Administrador de empresas','Arquitecto','Auditor','Biólogo',
+  'Comunicador social','Contador público','Diseñador gráfico','Diseñador industrial',
+  'Economista','Enfermero','Fisioterapeuta','Funcionario público','Gerente comercial',
+  'Ingeniero civil','Ingeniero de sistemas','Ingeniero eléctrico','Ingeniero industrial',
+  'Ingeniero mecánico','Médico','Nutricionista','Odontólogo','Periodista',
+  'Psicólogo','Químico farmacéutico','Sociólogo','Tecnólogo','Trabajador social',
+  'Veterinario','Docente universitario','Director de operaciones','Consultor',
+  'Emprendedor','Gerente de proyectos','Supply chain manager'
+];
+
+let activeProfFilter = '';
+
+window.showProfSuggestions = (val) => {
+  const el = document.getElementById('prof-suggest');
+  if(!el) return;
+  if(!val || val.length < 2) { el.style.display='none'; return; }
+  const q = val.toLowerCase();
+  // Get professions from existing contacts + base list
+  const fromContacts = [...new Set(contacts.filter(c=>c.profession).map(c=>c.profession))];
+  const all = [...new Set([...fromContacts, ...PROF_SUGGESTIONS])];
+  const filtered = all.filter(p => p.toLowerCase().includes(q)).slice(0,6);
+  if(!filtered.length) { el.style.display='none'; return; }
+  el.innerHTML = filtered.map(p =>
+    `<div class="prof-suggest-item" onmousedown="selectProfSuggestion('${p.replace(/'/g,"\'")}')">
+      ${p.replace(new RegExp(val,'gi'), m=>`<strong>${m}</strong>`)}
+    </div>`
+  ).join('');
+  el.style.display = 'block';
+};
+
+window.hideProfSuggestions = () => {
+  const el = document.getElementById('prof-suggest');
+  if(el) el.style.display = 'none';
+};
+
+window.selectProfSuggestion = (val) => {
+  const input = document.getElementById('c-profession');
+  if(input) { input.value = val; }
+  hideProfSuggestions();
+};
+
+function renderContactStats() {
+  const el = document.getElementById('contact-stats-row');
+  if(!el) return;
+  const total = contacts.length;
+  const overdue = contacts.filter(c => {
+    const days = getDaysSince(c.lastContactedAt||c.createdAt);
+    return c.reminderDays && days !== null && days >= c.reminderDays;
+  }).length;
+  const active = total - overdue;
+  const avgInfl = total ? (contacts.reduce((s,c)=>s+(c.infl||0),0)/total).toFixed(1) : '—';
+  el.innerHTML = `
+    <div class="contact-stat ${overdue>0?'warn':''}">
+      <div class="contact-stat-val">${total}</div>
+      <div class="contact-stat-label">Total</div>
+    </div>
+    <div class="contact-stat ${overdue>0?'warn':'good'}">
+      <div class="contact-stat-val">${overdue}</div>
+      <div class="contact-stat-label">Vencidos</div>
+    </div>
+    <div class="contact-stat good">
+      <div class="contact-stat-val">${active}</div>
+      <div class="contact-stat-label">Activos</div>
+    </div>
+    <div class="contact-stat">
+      <div class="contact-stat-val">${avgInfl}</div>
+      <div class="contact-stat-label">Influencia prom.</div>
+    </div>`;
+}
+
+function renderProfFilters() {
+  const el = document.getElementById('prof-filter-row');
+  if(!el) return;
+  const profs = [...new Set(contacts.filter(c=>c.profession).map(c=>c.profession))];
+  if(!profs.length) { el.innerHTML=''; return; }
+  el.innerHTML = `<span class="prof-filter-pill ${!activeProfFilter?'active':''}" onclick="setProfFilter('')">Todos</span>` +
+    profs.map(p => `<span class="prof-filter-pill ${activeProfFilter===p?'active':''}" onclick="setProfFilter('${p.replace(/'/g,"\'")}')"> ${p}</span>`).join('');
+}
+
+window.setProfFilter = (prof) => {
+  activeProfFilter = prof;
+  renderProfFilters();
+  renderContacts();
+};
+
+function renderStaleContacts() {
+  const el = document.getElementById('net-stale-section');
+  if(!el) return;
+  const stale = contacts.filter(c => {
+    const days = getDaysSince(c.lastContactedAt||c.createdAt);
+    return c.reminderDays && days !== null && days >= c.reminderDays;
+  }).slice(0,3);
+  if(!stale.length) { el.innerHTML=''; return; }
+  el.innerHTML = `
+    <div style="font-size:.67em;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted2);font-family:var(--mono);margin-bottom:6px">Sin activar esta semana</div>
+    <div class="net-stale">
+      ${stale.map(c => {
+        const days = getDaysSince(c.lastContactedAt||c.createdAt);
+        const pct = Math.min(100, Math.round((days/c.reminderDays)*100));
+        return `<div class="net-stale-item" onclick="openDetail('${c.id}')" style="cursor:pointer">
+          <div class="avatar ${avClass(c.id)}" style="width:28px;height:28px;font-size:10px">${initials(c.name)}</div>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:.82em;font-weight:600;color:var(--text)">${c.name.split(' ').slice(0,2).join(' ')}</div>
+            <div style="font-size:.72em;color:var(--muted2)">Hace ${days} días sin contacto</div>
+            <div class="net-stale-bar"><div class="net-stale-fill" style="width:${pct}%"></div></div>
+          </div>
+          <span class="reminder-badge">+${days}d</span>
+        </div>`;
+      }).join('')}
+    </div>`;
+}
+
 function renderContacts(){
+  renderContactStats();
+  renderProfFilters();
+  renderStaleContacts();
   const q=(document.getElementById('contact-search')?.value||'').toLowerCase();
   let list=contacts;
-  if(q) list=list.filter(c=>[c.name,c.role,c.company,c.city,c.country,c.specialty].join(' ').toLowerCase().includes(q));
+  if(q) list=list.filter(c=>[c.name,c.role,c.company,c.city,c.country,c.specialty,c.profession].join(' ').toLowerCase().includes(q));
   if(activeTag) list=list.filter(c=>c.specialty===activeTag);
+  if(activeProfFilter) list=list.filter(c=>c.profession===activeProfFilter);
   document.getElementById('contact-list-main').innerHTML=list.length?list.map(c=>{
     const days = getDaysSince(c.lastContactedAt||c.createdAt);
     const overdue = c.reminderDays && days !== null && days >= c.reminderDays;
@@ -2087,6 +2229,7 @@ function renderContacts(){
       <div class="contact-info">
         <div class="contact-name">${c.name}${overdue?` <span class="reminder-badge">${days}d</span>`:almostDue?` <span class="reminder-badge warn">pronto</span>`:''}</div>
         <div class="contact-sub">${[c.role,c.company].filter(Boolean).join(' · ')}${c.linkedin?' · LinkedIn':''}</div>
+        ${c.profession?`<div><span class="contact-prof-tag">${c.profession}</span></div>`:''}
       </div>
       <div class="contact-right">
         <div class="stars-sm">${'★'.repeat(c.infl)}${'☆'.repeat(5-c.infl)}</div>
@@ -2104,6 +2247,10 @@ window.openDetail = async (id) => {
   document.getElementById('d-avatar').className='drawer-avatar '+av;
   document.getElementById('d-avatar').textContent=initials(c.name);
   document.getElementById('d-name').textContent=c.name;
+  const dProf = document.getElementById('d-profession');
+  if(dProf) dProf.textContent = c.profession || '';
+  const dProfWrap = document.getElementById('d-profession-wrap');
+  if(dProfWrap) dProfWrap.style.display = c.profession ? 'block' : 'none';
   document.getElementById('d-role').textContent=[c.role,c.company].filter(Boolean).join(' · ');
 
   document.getElementById('d-info').innerHTML=`
