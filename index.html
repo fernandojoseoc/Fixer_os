@@ -993,12 +993,15 @@ body.dark{
     </div>
     <!-- CONTACTOS -->
     <div id="tab-contactos" class="tab">
+      <div id="contact-stats-row" class="contact-stats"></div>
       <div class="search-row">
-        <input class="search-input" id="contact-search" placeholder="Buscar por nombre, ciudad, especialidad..." oninput="renderContacts()">
+        <input class="search-input" id="contact-search" placeholder="Buscar por nombre, ciudad, profesión, especialidad..." oninput="renderContacts()">
         <button class="btn btn-primary btn-sm" onclick="openContactModal()">+ Añadir</button>
         <button class="btn btn-sm" onclick="exportContacts()" title="Exportar a Excel">Exportar</button>
       </div>
+      <div class="prof-filter-row" id="prof-filter-row"></div>
       <div class="tag-row" id="contact-tags"></div>
+      <div id="net-stale-section"></div>
       <div class="contact-list" id="contact-list-main"></div>
     </div>
     <!-- MAPA -->
@@ -1613,8 +1616,18 @@ body.dark{
       <div class="field"><label>País</label><input id="c-country" placeholder="Colombia"></div>
     </div>
     <div class="field-row">
+      <div class="field">
+        <label>Profesión u oficio</label>
+        <div class="prof-input-wrap">
+          <input id="c-profession" placeholder="Ingeniero Industrial..." autocomplete="off" oninput="showProfSuggestions(this.value)" onblur="setTimeout(hideProfSuggestions,200)">
+          <div class="prof-suggest" id="prof-suggest" style="display:none"></div>
+        </div>
+      </div>
       <div class="field"><label>Industria</label><input id="c-industry" placeholder="Logística"></div>
+    </div>
+    <div class="field-row">
       <div class="field"><label>Especialidad</label><input id="c-specialty" placeholder="Transporte"></div>
+      <div class="field"></div>
     </div>
     <div class="field-row">
       <div class="field"><label>Influencia (1–5)</label><select id="c-infl"><option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option></select></div>
