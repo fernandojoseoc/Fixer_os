@@ -2673,24 +2673,30 @@ function renderBlog(){
     const rt=readTime(a);
     const isDraft=a.status==='draft';
     const catSlug=(a.cat||'análisis').replace(/\s+/g,'-').replace(/[éè]/g,'e').replace(/[óò]/g,'o').replace(/[íì]/g,'i');
-    return `<div class="blog-card" onclick="openArticle('${a.id}')">
-      <div class="blog-card-cover">${CAT_ICONS[a.cat]||''}</div>
-      <div class="blog-card-body">
-        <div class="blog-card-meta">
-          <span class="blog-cat cat-${catSlug}">${CAT_ICONS[a.cat]||''} ${a.cat||'—'}</span>
-          ${a.visibility==='featured'?'<span class="blog-featured">Destacado</span>':''}
-          ${isDraft?'<span style="font-size:10px;color:var(--muted2);font-family:var(--mono)">Borrador</span>':''}
-          <span class="blog-read-time">⏱ ${rt} min</span>
+    const kws=a.keywords?.length?a.keywords.slice(0,5).map(k=>`<span class="blog-kw">${k}</span>`).join(''):'';
+    const dateStr=a.createdAt?new Date(a.createdAt.seconds*1000).toLocaleDateString('es',{day:'2-digit',month:'short',year:'numeric'}):'';
+    const authorInitials=(a.authorName||'?').split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();
+    const catColors={'caso de éxito':'#10b981','análisis':'#0369a1','metodología':'#7c3aed','tendencia':'#b45309','opinión':'#be185d','guía':'#0e7490'};
+    const borderColor=catColors[a.cat]||'#0ea5e9';
+    return `<div class="blog-card" style="border-left-color:${borderColor}" onclick="openArticle('${a.id}')">
+      <div class="blog-card-meta">
+        <span class="blog-cat cat-${catSlug}">${a.cat||'—'}</span>
+        ${a.visibility==='featured'?'<span class="blog-featured">Destacado</span>':''}
+        ${isDraft?'<span style="font-size:10px;color:var(--muted2);font-family:var(--mono)">Borrador</span>':''}
+        <span class="blog-read-time">${rt} min lectura</span>
+      </div>
+      <div class="blog-card-title">${a.title||'Sin título'}</div>
+      <div class="blog-card-abstract">${a.abstract||''}</div>
+      ${kws?`<div class="blog-keywords">${kws}</div>`:''}
+      <div class="blog-card-footer">
+        <div class="blog-author">
+          <div class="blog-author-av">${authorInitials}</div>
+          <div><div class="blog-author-name">${a.authorName||'Autor'}</div><div class="blog-author-date">${dateStr}</div></div>
         </div>
-        <div class="blog-card-title">${a.title||'Sin título'}</div>
-        <div class="blog-card-abstract">${a.abstract||''}</div>
-        <div class="blog-card-footer">
-          <div class="blog-author">
-            <div class="blog-author-av">${(a.authorName||'?').split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase()}</div>
-            <div><div class="blog-author-name">${a.authorName||'Autor'}</div><div class="blog-author-date">${a.createdAt?new Date(a.createdAt.seconds*1000).toLocaleDateString('es',{day:'2-digit',month:'short',year:'numeric'}):''}</div></div>
-          </div>
-          <div>${isLocked?'<span class="blog-locked">Miembros</span>':'<span style="font-size:10px;color:var(--muted2)">👁 Leer</span>'}</div>
-        </div>
+        ${isLocked
+          ?'<span class="blog-locked">Solo miembros</span>'
+          :`<button class="blog-read-btn" onclick="event.stopPropagation();openArticle('${a.id}')">Leer artículo</button>`
+        }
       </div>
     </div>`;
   }).join('');
