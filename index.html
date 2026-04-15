@@ -1674,7 +1674,7 @@ const urgBorder = u => u==='high'?'prob-high':u==='med'?'prob-med':'prob-low';
 const avClass = (id) => AV[Math.abs(id.charCodeAt(0))%AV.length];
 const avgRef = refs => refs.length ? (refs.reduce((s,r)=>s+r.stars,0)/refs.length).toFixed(1) : null;
 
-function toast(msg, dur=2600) {
+function toast(msg, dur=2000) {
   const t=document.getElementById('toast');
   t.textContent=msg; t.classList.add('show');
   clearTimeout(t._t); t._t=setTimeout(()=>t.classList.remove('show'),dur);
@@ -1768,7 +1768,7 @@ onAuthStateChanged(auth, user => {
     subscribeToData();
     renderModules();
     renderRoadmap();
-    applySettings();
+    setTimeout(applySettings, 100);
     aiRenderQuickBtns();
   } else {
     currentUser = null;
@@ -2405,8 +2405,9 @@ let currentTheme=localStorage.getItem('fos_theme')||'light';
 
 function applySettings(){applyLang(currentLang,false);applyFont(currentFont,false);applyTheme(currentTheme,false);applyFontSize(currentFontSize,false);}
 
-window.setLang=lang=>{currentLang=lang;localStorage.setItem('fos_lang',lang);applyLang(lang,true);};
+window.setLang=lang=>{currentLang=lang;applyLang(lang,true);};
 function applyLang(lang,updateUI=true){
+  localStorage.setItem('fos_lang',lang);
   const T=TRANSLATIONS[lang]||TRANSLATIONS.es;
   document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(T[k])el.textContent=T[k];});
   document.querySelectorAll('[data-tab]').forEach(el=>{const k=el.dataset.tab;if(T[k])el.textContent=T[k];});
@@ -2417,7 +2418,7 @@ function applyLang(lang,updateUI=true){
   }
 }
 
-window.setFont=fontId=>{currentFont=fontId;localStorage.setItem('fos_font',fontId);applyFont(fontId,true);};
+window.setFont=fontId=>{currentFont=fontId;applyFont(fontId,true);};
 function applyFont(fontId,updateUI=true){
   const f=FONTS.find(x=>x.id===fontId)||FONTS[0];
   if(f.google){
@@ -2425,9 +2426,22 @@ function applyFont(fontId,updateUI=true){
     if(!link){link=document.createElement('link');link.id='dynamic-font';link.rel='stylesheet';document.head.appendChild(link);}
     link.href='https://fonts.googleapis.com/css2?family='+f.google+'&display=swap';
   }
+  // Apply to root vars AND directly to html+body for full coverage
   document.documentElement.style.setProperty('--sans',f.css);
   document.documentElement.style.setProperty('--display',f.css);
-  if(updateUI){document.querySelectorAll('.font-opt').forEach(el=>el.classList.toggle('active',el.dataset.fontId===fontId));toast('✓ Tipografía: '+f.name);}
+  document.documentElement.style.setProperty('--mono',f.id==='courier'?f.css:"'DM Mono',monospace");
+  document.body.style.fontFamily=f.css;
+  // Override any inline styles on common elements
+  const styleId='fixer-font-override';
+  let styleEl=document.getElementById(styleId);
+  if(!styleEl){styleEl=document.createElement('style');styleEl.id=styleId;document.head.appendChild(styleEl);}
+  styleEl.textContent=`*:not(.no-font-override){font-family:${f.css} !important;}
+  .topbar-title,.splash-title,.dash-welcome-left div,.card-title,.stat-val,.perfil-name,.article-title,.modal-title,.drawer-name{font-family:${f.css} !important;}`;
+  localStorage.setItem('fos_font',fontId);
+  if(updateUI){
+    document.querySelectorAll('.font-opt').forEach(el=>el.classList.toggle('active',el.dataset.fontId===fontId));
+    toast('✓ Tipografía: '+f.name);
+  }
 }
 
 function renderFontOptions(){
@@ -2436,13 +2450,14 @@ function renderFontOptions(){
   el.innerHTML=FONTS.map(f=>`<div class="font-opt ${f.id===currentFont?'active':''}" data-font-id="${f.id}" onclick="setFont('${f.id}')" style="font-family:${f.css}"><div class="font-opt-name" style="font-size:13px;font-weight:500;color:var(--navy);margin-bottom:3px">${f.name}</div><div class="font-opt-preview" style="font-size:11px;color:var(--muted)">${f.preview}</div></div>`).join('');
 }
 
-window.setTheme=theme=>{currentTheme=theme;localStorage.setItem('fos_theme',theme);applyTheme(theme,true);};
+window.setTheme=theme=>{currentTheme=theme;applyTheme(theme,true);};
 function applyTheme(theme,updateUI=true){
   document.body.classList.toggle('dark',theme==='dark');
+  localStorage.setItem('fos_theme',theme);
   if(updateUI){
     document.getElementById('theme-light')?.classList.toggle('active',theme==='light');
     document.getElementById('theme-dark')?.classList.toggle('active',theme==='dark');
-    toast(theme==='dark'?'🌙 Modo oscuro activado':'☀️ Modo claro activado');
+    toast(theme==='dark'?'Modo oscuro activado':'Modo claro activado');
   }
 }
 
@@ -2484,6 +2499,8 @@ function applyFontSize(size,updateUI=true){
   const map={small:'13px',medium:'15px',large:'17px',xlarge:'19px'};
   const px=map[size]||'15px';
   document.documentElement.style.fontSize=px;
+  document.body.style.fontSize=px;
+  localStorage.setItem('fos_fontsize',size);
   if(updateUI){
     document.querySelectorAll('.size-opt').forEach(el=>el.classList.toggle('active',el.dataset.size===size));
     const labels={small:'Pequeño',medium:'Mediano',large:'Grande',xlarge:'Extra grande'};
