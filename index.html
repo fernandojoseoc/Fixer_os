@@ -503,9 +503,7 @@ body.dark{
 .dash-task-due{font-size:10px;font-family:var(--mono);color:var(--muted2);flex-shrink:0;}
 .dash-task-due.overdue{color:var(--red);}
 
-/* AI CHAT */
-.ai-wrap{display:flex;flex-direction:column;height:calc(100dvh - var(--nav-h) - 60px);}
-@media(max-width:768px){.ai-wrap{height:calc(100dvh - var(--nav-h) - var(--bnav-h) - var(--safe-b) - 24px);}}
+
 .ai-header{background:var(--navy);border-radius:var(--r2);padding:14px 16px;margin-bottom:12px;display:flex;align-items:center;gap:12px;}
 .ai-header-icon{width:40px;height:40px;border-radius:50%;background:var(--cyan);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
 .ai-header-info{flex:1;}
@@ -675,6 +673,69 @@ body.dark{
 /* DESKTOP NAV — hidden (replaced by sidebar) */
 .desktop-nav{display:none !important;}
 
+/* AI WRITER */
+.writer-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;height:calc(100dvh - var(--nav-h) - 60px);}
+@media(max-width:900px){.writer-wrap{grid-template-columns:1fr;height:auto;}}
+.writer-chat{display:flex;flex-direction:column;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;}
+.writer-chat-header{padding:14px 18px;border-bottom:1px solid var(--border);background:var(--navy2);display:flex;align-items:center;gap:10px;}
+.writer-chat-icon{width:32px;height:32px;border-radius:8px;background:var(--cyan);display:flex;align-items:center;justify-content:center;}
+.writer-chat-icon svg{width:17px;height:17px;stroke:var(--navy2);fill:none;stroke-width:2;stroke-linecap:round;}
+.writer-chat-title{font-size:.87em;font-weight:700;color:#fff;font-family:var(--display);}
+.writer-chat-sub{font-size:.68em;color:rgba(255,255,255,.45);font-family:var(--mono);}
+.writer-chat-status{margin-left:auto;display:flex;align-items:center;gap:5px;font-size:.67em;color:rgba(255,255,255,.4);font-family:var(--mono);}
+.writer-status-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;}
+.writer-status-dot.thinking{background:var(--amber);animation:wPulse 1s ease-in-out infinite;}
+@keyframes wPulse{0%,100%{opacity:1}50%{opacity:.3}}
+.writer-messages{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;}
+.writer-messages::-webkit-scrollbar{width:4px;}
+.writer-messages::-webkit-scrollbar-thumb{background:var(--border2);border-radius:99px;}
+.writer-msg{display:flex;gap:8px;align-items:flex-start;}
+.writer-msg.user{flex-direction:row-reverse;}
+.writer-msg-av{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;}
+.writer-msg.assistant .writer-msg-av{background:var(--cyan);color:var(--navy2);}
+.writer-msg.user .writer-msg-av{background:var(--navy2);color:#fff;}
+.writer-msg-bubble{max-width:85%;padding:9px 13px;border-radius:12px;font-size:.84em;line-height:1.6;}
+.writer-msg.assistant .writer-msg-bubble{background:var(--bg3);border:1px solid var(--border);border-bottom-left-radius:3px;color:var(--text);}
+.writer-msg.user .writer-msg-bubble{background:var(--navy2);color:#fff;border-bottom-right-radius:3px;}
+.writer-msg-bubble strong{color:var(--cyan);}
+.writer-msg.user .writer-msg-bubble strong{color:#7dd3fc;}
+.writer-thinking{display:flex;gap:4px;align-items:center;padding:10px 13px;}
+.writer-thinking-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:wBounce 1.2s ease-in-out infinite;}
+.writer-thinking-dot:nth-child(2){animation-delay:.2s;}
+.writer-thinking-dot:nth-child(3){animation-delay:.4s;}
+@keyframes wBounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+.writer-input-row{display:flex;gap:8px;padding:12px;border-top:1px solid var(--border);align-items:flex-end;}
+.writer-input{flex:1;padding:9px 12px;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--r);font-family:var(--sans);font-size:.84em;color:var(--text);outline:none;resize:none;min-height:38px;max-height:100px;-webkit-appearance:none;line-height:1.5;transition:var(--transition);}
+.writer-input:focus{border-color:var(--cyan);}
+.writer-send{width:38px;height:38px;border-radius:var(--r);background:var(--navy2);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:var(--transition);}
+.writer-send:hover{background:var(--blue);}
+.writer-send:disabled{opacity:.4;cursor:not-allowed;}
+.writer-send svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;}
+.writer-generate-btn{width:100%;padding:10px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;border:none;border-radius:var(--r);font-family:var(--sans);font-size:.87em;font-weight:600;cursor:pointer;transition:var(--transition);margin-top:4px;}
+.writer-generate-btn:hover{opacity:.9;transform:translateY(-1px);}
+.writer-generate-btn:disabled{opacity:.4;cursor:not-allowed;}
+
+/* PREVIEW PANEL */
+.writer-preview{display:flex;flex-direction:column;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;}
+.writer-preview-header{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.writer-preview-title{font-size:.84em;font-weight:600;color:var(--muted2);font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase;}
+.writer-preview-actions{display:flex;gap:8px;}
+.writer-preview-body{flex:1;overflow-y:auto;padding:20px 24px;}
+.writer-preview-body::-webkit-scrollbar{width:4px;}
+.writer-preview-body::-webkit-scrollbar-thumb{background:var(--border2);border-radius:99px;}
+.writer-empty-preview{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:10px;color:var(--muted2);}
+.writer-empty-icon{width:48px;height:48px;border-radius:12px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;}
+.writer-empty-icon svg{width:22px;height:22px;stroke:var(--muted2);fill:none;stroke-width:1.5;stroke-linecap:round;}
+.writer-empty-text{font-size:.84em;color:var(--muted2);text-align:center;max-width:200px;line-height:1.5;}
+.preview-article-title{font-family:var(--display);font-size:1.4em;font-weight:800;color:var(--navy);line-height:1.3;margin-bottom:10px;}
+.preview-article-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:center;}
+.preview-article-cat{padding:3px 10px;border-radius:99px;font-size:.7em;font-family:var(--mono);font-weight:600;}
+.preview-article-abstract{background:var(--bg3);border-left:3px solid var(--blue2);padding:12px 16px;border-radius:0 var(--r) var(--r) 0;font-size:.87em;color:var(--muted);line-height:1.6;margin-bottom:16px;font-style:italic;}
+.preview-section-title{font-family:var(--display);font-size:.93em;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.06em;margin:16px 0 8px;padding-bottom:6px;border-bottom:2px solid var(--cyan);}
+.preview-section-body{font-size:.87em;color:var(--text);line-height:1.7;margin-bottom:14px;}
+.preview-keywords{display:flex;gap:5px;flex-wrap:wrap;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);}
+.preview-kw{padding:3px 9px;border-radius:4px;font-size:.67em;font-family:var(--mono);background:var(--bg3);color:var(--muted);border:1px solid var(--border);}
+
 /* EMPTY */
 .empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;}
 .empty-icon{font-size:36px;margin-bottom:10px;}
@@ -789,8 +850,8 @@ body.dark{
     <button class="sidebar-btn" onclick="showTab('problemas');closeSidebar()" data-stab="problemas"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r=".5" fill="currentColor" stroke="none"/></svg></button>
     <button class="sidebar-btn" onclick="showTab('tareas');closeSidebar()" data-stab="tareas"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></button>
     <button class="sidebar-btn" onclick="showTab('kpis');closeSidebar()" data-stab="kpis"><svg viewBox="0 0 24 24"><polyline points="3 17 8 12 13 15 21 7"/></svg></button>
-    <button class="sidebar-btn" onclick="showTab('ia');closeSidebar()" data-stab="ia"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg></button>
     <button class="sidebar-btn" onclick="showTab('blog');closeSidebar()" data-stab="blog"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></button>
+    <button class="sidebar-btn" onclick="showTab('writer');closeSidebar()" data-stab="writer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/><path d="M15 5l3 3"/></svg></button>
     <div class="sidebar-bottom">
       <button class="sidebar-btn" onclick="showTab('perfil');closeSidebar()" data-stab="perfil"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button>
       <button class="sidebar-btn" onclick="showTab('ajustes');closeSidebar()" data-stab="ajustes"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
@@ -810,8 +871,8 @@ body.dark{
     <button class="sidebar-btn" onclick="showTab('kpis')" data-stab="kpis" title="KPIs"><svg viewBox="0 0 24 24"><polyline points="3 17 8 12 13 15 21 7"/></svg></button>
     <button class="sidebar-btn" onclick="showTab('roadmap')" data-stab="roadmap" title="Roadmap"><svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg></button>
     <button class="sidebar-btn" onclick="showTab('modulos')" data-stab="modulos" title="Módulos"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></button>
-    <button class="sidebar-btn" onclick="showTab('ia')" data-stab="ia" title="Fixer AI"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg></button>
     <button class="sidebar-btn" onclick="showTab('blog')" data-stab="blog" title="Blog"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></button>
+    <button class="sidebar-btn" onclick="showTab('writer')" data-stab="writer" title="Escribir con IA"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/><path d="M15 5l3 3"/></svg></button>
     <div class="sidebar-bottom">
       <button class="sidebar-btn" onclick="showTab('perfil')" data-stab="perfil" title="Mi Perfil"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></button>
       <button class="sidebar-btn" onclick="showTab('ajustes')" data-stab="ajustes" title="Ajustes"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button>
@@ -850,7 +911,6 @@ body.dark{
     <button class="dnav-tab" onclick="showTab('modulos')" data-tab="modulos">Módulos</button>
     <button class="dnav-tab" onclick="showTab('tareas')" data-tab="tareas">Tareas</button>
     <button class="dnav-tab" onclick="showTab('perfil')" data-tab="perfil">Perfil</button>
-    <button class="dnav-tab" onclick="showTab('ia')" data-tab="ia">✦ Fixer AI</button>
     <button class="dnav-tab" onclick="showTab('blog')" data-tab="blog">Blog</button>
     <button class="dnav-tab" onclick="showTab('ajustes')" data-tab="ajustes">Ajustes</button>
   </div>
@@ -1182,44 +1242,118 @@ body.dark{
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
               Email
             </a>
-            <button class="perfil-contact-btn secondary" onclick="showTab('ia')">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
-              Fixer AI
-            </button>
+            
           </div>
         </div>
 
       </div>
     </div>
 
-    <!-- FIXER AI -->
-    <div id="tab-ia" class="tab">
-      <div class="ai-wrap">
-        <div class="ai-header">
-          <div class="ai-header-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg></div>
-          <div class="ai-header-info">
-            <div class="ai-header-name">Fixer AI</div>
-            <div class="ai-header-sub">Asistente estratégico con contexto de tu red</div>
+
+    <!-- AI WRITER -->
+    <div id="tab-writer" class="tab">
+      <div style="max-width:680px;margin:0 auto;">
+
+        <!-- HEADER -->
+        <div class="card" style="background:linear-gradient(135deg,var(--navy2),var(--navy3));border:none;margin-bottom:1rem;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:-30%;right:-5%;width:200px;height:200px;background:radial-gradient(circle,var(--cyan-glow),transparent 65%);pointer-events:none;"></div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+            <div style="width:38px;height:38px;background:var(--cyan);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0a1628" stroke-width="2" stroke-linecap="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+            <div>
+              <div style="font-family:var(--display);font-size:1em;font-weight:800;color:#fff;">Escribir con IA</div>
+              <div style="font-size:.72em;color:rgba(255,255,255,.45);font-family:var(--mono);">Genera tu artículo en Claude y pégalo aquí</div>
+            </div>
           </div>
-          <div class="ai-header-status">
-            <div class="ai-status-dot" id="ai-status-dot"></div>
-            <span id="ai-status-text">Listo</span>
+          <div style="font-size:.82em;color:rgba(255,255,255,.55);line-height:1.6;">Describe tu tema, personaliza las opciones y genera un prompt listo para usar en Claude.ai. Luego pega el resultado en el editor del blog.</div>
+        </div>
+
+        <!-- FORM -->
+        <div class="card" style="margin-bottom:1rem;">
+          <div class="card-title">Describe tu artículo</div>
+
+          <div class="field" style="margin-bottom:14px;">
+            <label class="field-label">Tema principal *</label>
+            <textarea id="writer-topic" class="field" style="min-height:80px;resize:none;" placeholder="Ej: Cómo implementé un sistema MRP en una planta textil con 400 operarios y reduje el inventario en proceso un 32%..."></textarea>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
+            <div class="field">
+              <label class="field-label">Categoría</label>
+              <select id="writer-cat">
+                <option value="caso de éxito">Caso de éxito</option>
+                <option value="metodología" selected>Metodología</option>
+                <option value="análisis">Análisis</option>
+                <option value="tendencia">Tendencia</option>
+                <option value="opinión">Opinión</option>
+                <option value="guía">Guía práctica</option>
+              </select>
+            </div>
+            <div class="field">
+              <label class="field-label">Tono</label>
+              <select id="writer-tone">
+                <option value="técnico-práctico" selected>Técnico y práctico</option>
+                <option value="divulgativo">Divulgativo</option>
+                <option value="académico">Académico formal</option>
+                <option value="ejecutivo">Ejecutivo / gerencial</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field" style="margin-bottom:14px;">
+            <label class="field-label">Audiencia objetivo</label>
+            <select id="writer-audience">
+              <option value="ingenieros industriales y de manufactura">Ingenieros industriales y de manufactura</option>
+              <option value="gerentes y directores de operaciones">Gerentes y directores de operaciones</option>
+              <option value="empresarios del sector textil">Empresarios del sector textil</option>
+              <option value="consultores y profesionales de supply chain">Consultores y profesionales de supply chain</option>
+              <option value="estudiantes de ingeniería industrial">Estudiantes de ingeniería industrial</option>
+            </select>
+          </div>
+
+          <div class="field" style="margin-bottom:0;">
+            <label class="field-label">Datos, métricas o resultados a incluir (opcional)</label>
+            <textarea id="writer-data" style="min-height:60px;resize:none;" placeholder="Ej: Reducción del 32% en WIP, mejora del 25% en OTIF, implementación en 3 meses..."></textarea>
           </div>
         </div>
-        <div class="ai-quick-btns" id="ai-quick-btns"></div>
-        <div class="ai-messages" id="ai-messages">
-          <div class="ai-empty" id="ai-empty">
-            <div class="ai-empty-icon" style="font-size:36px;color:var(--cyan)"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg></div>
-            <div class="ai-empty-title">Fixer AI</div>
-            <div class="ai-empty-sub">Cuéntame un problema, un objetivo o una situación. Analizaré tu red y te daré una estrategia concreta.</div>
+
+        <!-- GENERATE BUTTON -->
+        <button class="btn btn-primary" style="width:100%;padding:13px;font-size:.95em;margin-bottom:1rem;" onclick="writerGeneratePrompt()">
+          Generar prompt para Claude
+        </button>
+
+        <!-- PROMPT OUTPUT -->
+        <div id="writer-prompt-section" style="display:none;">
+          <div class="card" style="margin-bottom:1rem;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+              <div class="card-title" style="margin-bottom:0;border:none;padding:0;">Prompt listo</div>
+              <button class="btn btn-sm" onclick="writerCopyPrompt()" id="writer-copy-btn">Copiar prompt</button>
+            </div>
+            <div id="writer-prompt-text" style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:14px;font-size:.78em;font-family:var(--mono);color:var(--text);line-height:1.7;white-space:pre-wrap;max-height:280px;overflow-y:auto;"></div>
+          </div>
+
+          <!-- OPEN CLAUDE BUTTON -->
+          <div style="display:flex;gap:10px;">
+            <a id="writer-claude-link" href="https://claude.ai" target="_blank" class="btn btn-primary" style="flex:1;justify-content:center;padding:13px;font-size:.93em;text-decoration:none;">
+              Abrir Claude.ai
+            </a>
+            <button class="btn" style="flex:1;padding:13px;font-size:.93em;" onclick="showTab('blog');setTimeout(openWriteModal,300)">
+              Ir al editor del blog
+            </button>
+          </div>
+
+          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;margin-top:12px;">
+            <div style="font-size:.75em;font-weight:600;color:var(--muted);margin-bottom:6px;font-family:var(--mono);letter-spacing:.05em;text-transform:uppercase;">Pasos siguientes</div>
+            <div style="font-size:.8em;color:var(--muted);line-height:1.7;">
+              1. Copia el prompt y ábrelo en Claude.ai<br>
+              2. Claude te generará el artículo completo<br>
+              3. Copia el resultado y abre el editor del blog<br>
+              4. Pega cada sección en su campo correspondiente
+            </div>
           </div>
         </div>
-        <div class="ai-input-row">
-          <textarea class="ai-input" id="ai-input" placeholder="Describe tu situación..." rows="1" onkeydown="aiHandleKey(event)" oninput="aiAutoResize(this)"></textarea>
-          <button class="ai-send-btn" id="ai-send-btn" onclick="aiSend()">
-            <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-          </button>
-        </div>
+
       </div>
     </div>
 
@@ -1387,10 +1521,6 @@ body.dark{
       <button class="bnav-tab" onclick="showTab('tareas')" data-btab="tareas">
         <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
         <span>Tareas</span>
-      </button>
-      <button class="bnav-tab" onclick="showTab('ia')" data-btab="ia">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg>
-        <span>IA</span>
       </button>
       <button class="bnav-tab" onclick="showTab('perfil')" data-btab="perfil">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
@@ -1769,7 +1899,6 @@ onAuthStateChanged(auth, user => {
     renderModules();
     renderRoadmap();
     setTimeout(applySettings, 100);
-    aiRenderQuickBtns();
   } else {
     currentUser = null;
     contacts=[]; problems=[]; activity=[];
@@ -2337,7 +2466,7 @@ function renderModules(){
 }
 
 /* ── TAB NAV ── */
-window.showTab = (id) => {
+window.showTab = (id) => { if(id==='writer'&&writerHistory.length===0){/* fresh start */}
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.dnav-tab,.bnav-tab,.sidebar-btn').forEach(b=>b.classList.remove('active'));
   const tabEl = document.getElementById('tab-'+id);
@@ -2509,7 +2638,7 @@ function applyFontSize(size,updateUI=true){
 }
 
 const _origShowTab=window.showTab;
-window.showTab=id=>{_origShowTab(id);if(id==='ajustes')renderFontOptions();if(id==='blog')renderBlog();if(id==='tareas'){renderTasks();renderTaskFilters();}if(id==='ia')aiRenderQuickBtns();};
+window.showTab=id=>{_origShowTab(id);if(id==='ajustes')renderFontOptions();if(id==='blog')renderBlog();if(id==='tareas'){renderTasks();renderTaskFilters();}};
 
 /* ════ BLOG ════ */
 let articles=[];let currentArticleId=null;let writeKeywords=[];let blogFilterCat='all';let unsubArticles=null;
@@ -2886,253 +3015,88 @@ window.deleteTask = async (id) => {
 };
 
 
-/* ════ FIXER AI ════ */
-let aiHistory = [];
-let aiThinking = false;
+/* ════ AI WRITER ════ */
+let writerGeneratedPrompt = '';
 
-const AI_QUICK = [
-  {label:'Resolver problema', prompt:'Tengo un problema urgente que necesito resolver. ¿Cómo me ayudas a analizarlo y activar mi red?'},
-  {label:'¿A quién llamar?', prompt:'Necesito resolver una situación específica. Analiza mis contactos y dime a quién debería contactar primero y por qué.'},
-  {label:'Preparar negociación', prompt:'Tengo una negociación importante próximamente. Ayúdame a prepararme con una estrategia concreta.'},
-  {label:'Activar mi red', prompt:'Quiero lograr un objetivo específico. ¿Cómo puedo activar estratégicamente mi red de contactos para lograrlo?'},
-  {label:'Priorizar tareas', prompt:'Revisa mis tareas pendientes y ayúdame a priorizar qué debo hacer primero hoy.'},
-];
+window.writerGeneratePrompt = () => {
+  const topic = document.getElementById('writer-topic')?.value?.trim();
+  if(!topic) { toast('Describe el tema del artículo primero'); return; }
 
-function buildAIContext() {
-  const name = currentUser?.displayName || 'el usuario';
-  const topContacts = [...contacts]
-    .sort((a,b)=>(b.infl+b.trust)-(a.infl+a.trust))
-    .slice(0,15)
-    .map(c=>`- ${c.name} | ${c.role||'—'} en ${c.company||'—'} | ${c.city||'—'} | Industria: ${c.industry||c.specialty||'—'} | Influencia: ${c.infl}/5 | Confianza: ${c.trust}/5${c.notes?' | Notas: '+c.notes.slice(0,80):''}`)
-    .join('\n');
+  const cat = document.getElementById('writer-cat')?.value || 'metodología';
+  const tone = document.getElementById('writer-tone')?.value || 'técnico-práctico';
+  const audience = document.getElementById('writer-audience')?.value || 'ingenieros industriales';
+  const data = document.getElementById('writer-data')?.value?.trim() || '';
 
-  const activeProbs = problems.filter(p=>p.status==='active').slice(0,5)
-    .map(p=>`- [${p.urg==='high'?'CRÍTICO':p.urg==='med'?'URGENTE':'NORMAL'}] ${p.desc} (${p.cat})`)
-    .join('\n');
+  writerGeneratedPrompt = `Necesito que me escribas un artículo profesional completo para mi blog sobre manufactura, ingeniería industrial e Industria 4.0.
 
-  const pendingTasks = tasks.filter(t=>!t.done).slice(0,8)
-    .map(t=>{
-      const c = contacts.find(x=>x.id===t.contactId);
-      return `- [${t.priority==='high'?'ALTA':t.priority==='med'?'MEDIA':'BAJA'}] ${t.title}${t.due?' (vence: '+t.due+')':''}${c?' → vinculada a: '+c.name:''}`;
-    })
-    .join('\n');
+SOBRE MÍ:
+Soy Fernando José Ospino Cortina, Ingeniero Industrial, Jefe de Planeación de Producción en Classic Jeans Shops S.A.S., Barranquilla, Colombia. Especializado en manufactura textil, planeación con IA, Lean Manufacturing y Supply Chain.
 
-  const resolvedCount = problems.filter(p=>p.status==='done').length;
-  const rate = problems.length ? Math.round(resolvedCount/problems.length*100) : 0;
+TEMA DEL ARTÍCULO:
+${topic}
 
-  return `Eres Fixer AI, el asistente estratégico personal de ${name} dentro de Fixer OS. Tu rol es ayudar a resolver problemas complejos, activar redes de contacto y preparar negociaciones difíciles con estrategia y precisión.
+ESPECIFICACIONES:
+- Categoría: ${cat}
+- Tono: ${tone}
+- Audiencia objetivo: ${audience}
+${data ? `- Datos y métricas a incluir: ${data}` : ''}
 
-CONTEXTO DEL FIXER:
-- Nombre: ${name}
-- Contactos en red: ${contacts.length}
-- Problemas resueltos: ${resolvedCount} (tasa de éxito: ${rate}%)
-- Problemas activos: ${problems.filter(p=>p.status==='active').length}
-- Tareas pendientes: ${tasks.filter(t=>!t.done).length}
+FORMATO OBLIGATORIO (IMRyD + APA 7ª):
+El artículo debe tener exactamente estas secciones, claramente separadas con sus títulos:
 
-RED DE CONTACTOS (top ${Math.min(15,contacts.length)} por influencia y confianza):
-${topContacts || 'Sin contactos registrados aún.'}
+**TÍTULO:** [Título conciso, descriptivo, con palabras clave, máximo 15 palabras]
 
-PROBLEMAS ACTIVOS:
-${activeProbs || 'Sin problemas activos.'}
+**ABSTRACT:** [150-200 palabras. Resumen ejecutivo que incluya el problema, enfoque, metodología y resultados principales.]
 
-TAREAS PENDIENTES:
-${pendingTasks || 'Sin tareas pendientes.'}
+**INTRODUCCIÓN:** [300-400 palabras. Contexto del problema en la industria, relevancia del tema, objetivo del artículo.]
 
-INSTRUCCIONES:
-- Responde siempre en español, de forma directa y accionable
-- Cuando sugiereas contactos, menciona sus nombres exactos de la red
-- Sé específico: di QUÉ hacer, QUIÉN llamar, QUÉ decir y CUÁNDO
-- Usa tu conocimiento de la red para personalizar cada respuesta
-- Si detectas urgencia, prioriza las acciones más críticas primero
-- Formato: usa negritas para nombres de contactos y acciones clave
-- Máximo 4 párrafos por respuesta, directo al grano`;
-}
+**METODOLOGÍA:** [300-400 palabras. Enfoque utilizado, herramientas, proceso paso a paso, marcos de referencia aplicados.]
 
-function aiRenderQuickBtns() {
-  const el = document.getElementById('ai-quick-btns');
-  if(!el) return;
-  el.innerHTML = AI_QUICK.map(q =>
-    `<button class="ai-quick-btn" onclick="aiSendQuick('${q.prompt.replace(/'/g,"\\'")}')">
-      ${q.label}
-    </button>`
-  ).join('');
-}
+**RESULTADOS:** [300-400 palabras. Hallazgos concretos, datos cuantitativos, comparaciones antes/después, evidencias.]
 
-function aiAddMessage(role, text) {
-  const emptyEl = document.getElementById('ai-empty');
-  if(emptyEl) emptyEl.remove();
+**CONCLUSIONES:** [200-300 palabras. Síntesis de aprendizajes, implicaciones prácticas, recomendaciones para el lector.]
 
-  const msgs = document.getElementById('ai-messages');
-  if(!msgs) return;
+**PALABRAS CLAVE:** [5-8 términos separados por coma]
 
-  const initials = role === 'user'
-    ? (currentUser?.displayName||'Yo').split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase()
-    : 'AI';
+INSTRUCCIONES ADICIONALES:
+- Escribe en español formal pero accesible
+- Usa datos reales y ejemplos concretos de la industria textil colombiana cuando sea posible
+- Incluye cifras y métricas específicas para dar credibilidad
+- El tono debe posicionarme como experto en el tema
+- Longitud total: 1200-1800 palabras
+- Cita metodologías reconocidas (Lean, Six Sigma, APICS, etc.) cuando aplique`;
 
-  const div = document.createElement('div');
-  div.className = `ai-msg ${role}`;
-
-  // Format text: **bold** → <strong>
-  const formatted = text
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\n/g, '<br>');
-
-  div.innerHTML = `
-    <div class="ai-msg-avatar">${initials}</div>
-    <div class="ai-msg-bubble">${formatted}</div>`;
-
-  msgs.appendChild(div);
-  msgs.scrollTop = msgs.scrollHeight;
-}
-
-function aiShowThinking() {
-  const msgs = document.getElementById('ai-messages');
-  if(!msgs) return;
-  const emptyEl = document.getElementById('ai-empty');
-  if(emptyEl) emptyEl.remove();
-  const div = document.createElement('div');
-  div.className = 'ai-msg assistant';
-  div.id = 'ai-thinking-bubble';
-  div.innerHTML = `
-    <div class="ai-msg-avatar">✦</div>
-    <div class="ai-msg-bubble ai-thinking">
-      <div class="ai-thinking-dot"></div>
-      <div class="ai-thinking-dot"></div>
-      <div class="ai-thinking-dot"></div>
-    </div>`;
-  msgs.appendChild(div);
-  msgs.scrollTop = msgs.scrollHeight;
-}
-
-function aiRemoveThinking() {
-  const el = document.getElementById('ai-thinking-bubble');
-  if(el) el.remove();
-}
-
-function aiSetStatus(thinking) {
-  const dot = document.getElementById('ai-status-dot');
-  const txt = document.getElementById('ai-status-text');
-  if(dot) dot.className = 'ai-status-dot' + (thinking?' thinking':'');
-  if(txt) txt.textContent = thinking ? 'Analizando...' : 'Listo';
-  const btn = document.getElementById('ai-send-btn');
-  if(btn) btn.disabled = thinking;
-  aiThinking = thinking;
-}
-
-window.aiSend = async () => {
-  if(aiThinking) return;
-  const input = document.getElementById('ai-input');
-  const text = input?.value?.trim();
-  if(!text) return;
-  input.value = '';
-  aiAutoResize(input);
-  await aiProcess(text);
+  document.getElementById('writer-prompt-text').textContent = writerGeneratedPrompt;
+  document.getElementById('writer-prompt-section').style.display = 'block';
+  document.getElementById('writer-prompt-section').scrollIntoView({behavior:'smooth', block:'start'});
 };
 
-window.aiSendQuick = async (prompt) => {
-  if(aiThinking) return;
-  await aiProcess(prompt);
+window.writerCopyPrompt = () => {
+  if(!writerGeneratedPrompt) return;
+  navigator.clipboard.writeText(writerGeneratedPrompt).then(() => {
+    const btn = document.getElementById('writer-copy-btn');
+    if(btn) { btn.textContent = 'Copiado'; setTimeout(()=>btn.textContent='Copiar prompt', 2000); }
+    toast('Prompt copiado al portapapeles');
+  }).catch(() => {
+    // Fallback
+    const el = document.getElementById('writer-prompt-text');
+    const range = document.createRange();
+    range.selectNode(el);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    toast('Prompt copiado');
+  });
 };
 
-async function aiProcess(userText) {
-  aiAddMessage('user', userText);
-  aiHistory.push({role:'user', content: userText});
-  aiShowThinking();
-  aiSetStatus(true);
-
-  // Hide quick btns after first message
-  const qb = document.getElementById('ai-quick-btns');
-  if(qb && aiHistory.length > 1) qb.style.display = 'none';
-
-  try {
-    const systemPrompt = buildAIContext();
-    const messages = aiHistory.slice(-10); // last 10 messages for context
-
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'anthropic-dangerous-direct-browser-access': 'true',
-        'anthropic-version': '2023-06-01'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 1000,
-        system: systemPrompt,
-        messages: messages
-      })
-    });
-
-    const data = await response.json();
-    const reply = data.content?.[0]?.text || 'No pude generar una respuesta. Intenta de nuevo.';
-
-    aiRemoveThinking();
-    aiAddMessage('assistant', reply);
-    aiHistory.push({role:'assistant', content: reply});
-
-    // Save to Firestore activity
-    addActivity('<strong>Fixer AI</strong> — consulta realizada');
-
-  } catch(err) {
-    aiRemoveThinking();
-    aiAddMessage('assistant', 'Hubo un error al conectar con Fixer AI. Verifica tu conexión e intenta de nuevo.');
-    console.error('AI error:', err);
-  }
-
-  aiSetStatus(false);
-}
-
-window.aiHandleKey = (e) => {
-  if(e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault();
-    aiSend();
-  }
+window.writerHandleKey = (e) => {
+  if(e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); writerSend(); }
 };
-
-window.aiAutoResize = (el) => {
+window.writerAutoResize = (el) => {
   el.style.height = 'auto';
-  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+  el.style.height = Math.min(el.scrollHeight, 100) + 'px';
 };
 
-window.aiClearChat = () => {
-  aiHistory = [];
-  const msgs = document.getElementById('ai-messages');
-  if(msgs) msgs.innerHTML = `
-    <div class="ai-empty" id="ai-empty">
-      <div class="ai-empty-icon">✦</div>
-      <div class="ai-empty-title">Fixer AI</div>
-      <div class="ai-empty-sub">Cuéntame un problema, un objetivo o una situación. Analizaré tu red y te daré una estrategia concreta.</div>
-    </div>`;
-  const qb = document.getElementById('ai-quick-btns');
-  if(qb) { qb.style.display = 'flex'; aiRenderQuickBtns(); }
-  aiSetStatus(false);
-}
-
-window.aiHandleKey = (e) => {
-  if(e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault();
-    aiSend();
-  }
-};
-
-window.aiAutoResize = (el) => {
-  el.style.height = 'auto';
-  el.style.height = Math.min(el.scrollHeight, 120) + 'px';
-};
-
-window.aiClearChat = () => {
-  aiHistory = [];
-  const msgs = document.getElementById('ai-messages');
-  if(msgs) msgs.innerHTML = `
-    <div class="ai-empty" id="ai-empty">
-      <div class="ai-empty-icon" style="font-size:36px;color:var(--cyan)"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg></div>
-      <div class="ai-empty-title">Fixer AI</div>
-      <div class="ai-empty-sub">Cuéntame un problema, un objetivo o una situación. Analizaré tu red y te daré una estrategia concreta.</div>
-    </div>`;
-  const qb = document.getElementById('ai-quick-btns');
-  if(qb) { qb.style.display = 'flex'; aiRenderQuickBtns(); }
-  aiSetStatus(false);
-};
 
 /* ── SW ── */
 if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
